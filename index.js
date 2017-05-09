@@ -60,3 +60,7 @@ server.listen(port, function(err){
     }
     console.log("Server is running PORT " +port);
 });
+
+module.exports = {
+    port: port
+};
