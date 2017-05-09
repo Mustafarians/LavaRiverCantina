@@ -1,9 +1,3 @@
-module.exports = {
-    add: function (a, b) {
-        return a + b;
-    }
-};
-
 //require all modules
 const express = require("express");
 const port = process.env.PORT || 10000;
@@ -60,3 +54,7 @@ server.listen(port, function(err){
     }
     console.log("Server is running PORT " +port);
 });
+
+module.exports = {
+    port: port
+};
