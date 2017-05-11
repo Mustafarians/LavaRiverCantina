@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10327,16 +10327,36 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
     
-    var loginBut = document.getElementById("2login");
+    
+    var loginBut = document.getElementById("loginBut");
    
     loginBut.addEventListener("click", function(){
-        location.href = "/login";   
-        
+    
+        var uName = document.getElementById("uName").value;
+        var passC = document.getElementById("passC").value;
+            
+            $.ajax({
+                url:"/login",
+                type:"post",
+                data:{
+                    passC:passC,
+                    uName:uName
+                },
+                success:function(resp){
+                
+                    if(resp.status == "success"){
+                        console.log("logged in");     
+                    } else if(resp.status == "fail"){
+                        console.log("login failed");
+                }
+            }
+        })
     });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
