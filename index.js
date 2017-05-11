@@ -35,7 +35,7 @@ app.get("/", function(req, res){
     if(req.session.username){
         res.sendFile(pub+"/admin.html");
     }else {
-        res.sendFile(pub+"/menu.html");
+        res.sendFile(pub+"/home.html");
     }
 });
 
