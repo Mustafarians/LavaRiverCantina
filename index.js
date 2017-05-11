@@ -14,7 +14,7 @@ var server = require("http").createServer(app);
 var pub = path.resolve(__dirname, "public");
 var io = require("socket.io")(server);
 const pg = require("pg");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:database_password@localhost:5432/database_name_here";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:webdev@localhost:5432/lrc";
 
 //redirct /scripts to build folder
 app.use("/scripts", express.static("build"));
@@ -39,12 +39,49 @@ app.get("/", function(req, res){
     }
 });
 
+app.get("/login", function(req, res){
+    res.sendFile(pub+"/login.html");
+});
+
 io.on("connection", function(socket){
 
     socket.on("disconnect", function(){
         //when the user leaves my html, they "disconnect" by cloasing the connection
     });
 });
+
+app.post("/login", function(req, resp){
+    var passC = req.body.passC;
+    var uName = req.body.uName;
+    
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            resp.end("FAIL");
+        }
+            client.query("SELECT * FROM staff WHERE passcode = $1 AND empid = $2", [passC, uName], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                resp.end("FAIL");
+            }
+            if(result.rows.length > 0){
+                req.session.Level = result.rows[0].Level;
+                
+                var obj = {
+                    status:"success",
+                    level:result.rows[0].Level
+                }
+                
+                resp.send(obj);
+            } else {
+                console.log("err1");
+                resp.end("FAIL");
+            }
+        })
+        })
+    
+})
 
 //listen to the server and open up a port
 server.listen(port, function(err){
