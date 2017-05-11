@@ -33,9 +33,9 @@ app.use(session({
 
 app.get("/", function(req, res){
     if(req.session.username){
-        res.sendFile(pub+"/item.html");
+        res.sendFile(pub+"/admin.html");
     }else {
-        res.sendFile(pub+"/login.html");
+        res.sendFile(pub+"/menu.html");
     }
 });
 
