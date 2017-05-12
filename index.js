@@ -19,6 +19,9 @@ var dbURL = process.env.DATABASE_URL || "postgres://postgres:database_password@l
 //redirct /scripts to build folder
 app.use("/scripts", express.static("build"));
 
+//redirect /imgs to img folder
+app.use("/images", express.static("img"));
+
 //body parser setting
 app.use(bp.urlencoded({
     extended: true
