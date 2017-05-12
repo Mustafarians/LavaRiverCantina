@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node index.js"
   },
   "author": "Daniel Kole, Robin Gill, Harnoor Gill, Abraham Al Jundi, Gurjap Thandi",
   "license": "ISC",
@@ -22,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AJayceW/LavaRiverCantina.git"
+    "url": "git+https://github.com/Mustafarians/LavaRiverCantina.git"
   },
   "bugs": {
-    "url": "https://github.com/AJayceW/LavaRiverCantina/issues"
+    "url": "https://github.com/Mustafarians/LavaRiverCantinaissues"
   },
-  "homepage": "https://github.com/AJayceW/LavaRiverCantina#readme"
+  "homepage": "https://github.com/Mustafarians/LavaRiverCantina#readme"
 }
