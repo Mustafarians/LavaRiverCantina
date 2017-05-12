@@ -46,10 +46,14 @@ app.get("/login", function(req, res){
     res.sendFile(pub+"/login.html");
 });
 
+app.get("/menu", function(req, res){
+    res.sendFile(pub+"/menu.html");
+});
+
 io.on("connection", function(socket){
 
     socket.on("disconnect", function(){
-        //when the user leaves my html, they "disconnect" by cloasing the connection
+        //when the user leaves my html, they "disconnect" by closing the connection
     });
 });
 
