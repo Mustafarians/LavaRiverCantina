@@ -43,9 +43,23 @@ app.get("/", function(req, res){
         res.sendFile(pub+"/home.html");
 });
 
-app.get("/menu", function(req, res){
-        res.sendFile(pub+"/menu.html");
+app.get("/admin", function(req, res){
+    if(session.level == 2){
+        res.sendFile(pub+"/admin.html");
+    } else {
+        res.sendFile(pub+"/home.html");
+    }
 });
+
+app.get("/kitchen", function(req,res){
+    if(session.level == 1){
+        res.sendFile(pub+"/kitchen.html");
+    } else if (session.level == 2){
+        res.sendFile(pub+"/kitchen.html");
+    } else {
+        res.sendFile(pub+"/home.html");
+    }
+})
 
 app.get("/login", function(req, res){
     res.sendFile(pub+"/login.html");
