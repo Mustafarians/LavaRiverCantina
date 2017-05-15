@@ -11,8 +11,15 @@
     height: 50vh;
     top: 50px;
 }
+<<<<<<< HEAD
 
 #2login{
     position: absolute;
 
 }
+=======
+#body {
+    background-image :url("/img/databank_mustafar_01_169_5b470758.jpeg");
+    background-size:cover;
+}
+>>>>>>> 3a0e70a14dda2125177f13ae9e49442c7573388e
