@@ -35,11 +35,11 @@ app.use(session({
 }));
 
 app.get("/", function(req, res){
-    if(req.session.username){
-        res.sendFile(pub+"/admin.html");
-    }else {
         res.sendFile(pub+"/home.html");
-    }
+});
+
+app.get("/menu", function(req, res){
+        res.sendFile(pub+"/menu.html");
 });
 
 app.get("/login", function(req, res){
@@ -88,6 +88,42 @@ app.post("/login", function(req, resp){
         })
         })
     
+})
+
+app.post("/order1", function(req, resp){
+    var foodname = req.body.foodname;
+    var quantity = req.body.quantity;
+    
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            resp.end("FAIL");
+        }
+            client.query("SELECT * FROM menu WHERE foodname = $1", [foodname], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                resp.end("FAIL");
+            }
+            if(result.rows.length > 0){
+                client.query("INSERT INTO orders (itemnum, quantity) VALUES ($1, $2)", [result.rows[0].itemnum, quantity], function(err, result){
+                    done();
+                    if(err){
+                        console.log(err);
+                        resp.end("FAIL");
+                    }
+                    
+                    var obj = {
+                        status:"success"
+                    }
+                    resp.send(obj);
+                })
+            } else {
+                console.log("err1");
+                resp.end("FAIL");
+            }
+        })
+        })
 })
 
 //listen to the server and open up a port
