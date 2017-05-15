@@ -4,3 +4,7 @@
     height: 50vh;
     top: 50px;
 }
+#body {
+    background-image :url("/img/databank_mustafar_01_169_5b470758.jpeg");
+    background-size:cover;
+}
