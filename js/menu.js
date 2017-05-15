@@ -18,7 +18,7 @@ $(document).ready(function(){
     });
     
     checkBut.addEventListener("click", function(){
-        
+         
             $.ajax({
                 url:"/order66",
                 type:"post",
