@@ -19,13 +19,11 @@ var dbURL = process.env.DATABASE_URL || "postgres://postgres:webdev@localhost:54
 //redirect /scripts to build folder
 app.use("/scripts", express.static("build"));
 
-<<<<<<< HEAD
 //images
 app.use("/styles", express.static("css"));
-=======
+
 //redirect /imgs to img folder
 app.use("/images", express.static("img"));
->>>>>>> e9933b97f30bb396e9e72093babb7f41a2668abb
 
 //body parser setting
 app.use(bp.urlencoded({
