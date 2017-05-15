@@ -113,9 +113,6 @@ app.post("/order66", function(req, resp){
     var OrderItems = req.body.OrderItems;
     var OrderItemsQuant = req.body.OrderItemsQuant;
     
-    console.log(OrderItems)
-    console.log(OrderItemsQuant)
-    
     pg.connect(dbURL, function(err, client, done){
         if(err){
             console.log(err);
