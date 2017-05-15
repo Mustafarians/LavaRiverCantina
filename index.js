@@ -16,8 +16,11 @@ var io = require("socket.io")(server);
 const pg = require("pg");
 var dbURL = process.env.DATABASE_URL || "postgres://postgres:webdev@localhost:5432/lrc";
 
-//redirct /scripts to build folder
+//redirect /scripts to build folder
 app.use("/scripts", express.static("build"));
+
+//images
+app.use("/styles", express.static("css"));
 
 //body parser setting
 app.use(bp.urlencoded({
