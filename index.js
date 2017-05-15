@@ -32,11 +32,11 @@ app.use(session({
 }));
 
 app.get("/", function(req, res){
-    if(req.session.username){
-        res.sendFile(pub+"/admin.html");
-    }else {
         res.sendFile(pub+"/home.html");
-    }
+});
+
+app.get("/menu", function(req, res){
+        res.sendFile(pub+"/menu.html");
 });
 
 app.get("/login", function(req, res){
@@ -74,6 +74,74 @@ app.post("/login", function(req, resp){
                 }
                 
                 resp.send(obj);
+            } else {
+                console.log("err1");
+                resp.end("FAIL");
+            }
+        })
+        })
+    
+})
+
+app.post("/order1", function(req, resp){
+    var foodname = req.body.foodname;
+    
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            resp.end("FAIL");
+        }
+            client.query("SELECT * FROM menu WHERE foodname = $1", [foodname], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                resp.end("FAIL");
+            }
+            if(result.rows.length > 0){
+                client.query("INSERT INTO orders (itemnum) VALUES ($1)", [result.rows[0].itemnum], function(err, result){
+                    done();
+                    if(err){
+                        console.log(err);
+                        resp.end("FAIL");
+                    }
+                    
+                    var obj = {
+                        status:"success"
+                    }
+                    resp.send(obj);
+                })
+            } else {
+                console.log("err1");
+                resp.end("FAIL");
+            }
+        })
+        })
+    
+})
+
+app.post("/order66", function(req, resp){
+    var foodname = req.body.foodname;
+    var orderName = req.body.ordername;
+    
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            resp.end("FAIL");
+        }
+            client.query("SELECT * FROM menu WHERE foodname = $1", [foodname], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                resp.end("FAIL");
+            }
+            if(result.rows.length > 0){
+                client.query("INSERT INTO orders (itemnum, ordernum, empid) VALUES ($1, $2, $3)", [result.rows[0].itemnum, orderName, 10021], function(err, result){
+                    done();
+                    if(err){
+                        console.log(err);
+                        resp.end("FAIL");
+                    }
+                })
             } else {
                 console.log("err1");
                 resp.end("FAIL");

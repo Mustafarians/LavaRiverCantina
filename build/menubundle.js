@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10327,20 +10327,33 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
-    
-    var loginBut = document.getElementById("2login");
-    var menuBut = document.getElementById("2menu");
+
+    var item1But = document.getElementById("item1");
    
-    loginBut.addEventListener("click", function(){
-        location.href = "/login";       
-    });
-    
-    menuBut.addEventListener("click", function(){
-        location.href = "/menu";   
+    item1But.addEventListener("click", function(){
+        var foodname = "Tauntaun Steak"
+        
+            $.ajax({
+                url:"/order1",
+                type:"post",
+                data:{
+                    foodname:foodname
+                },
+                success:function(resp){
+                    if(resp.status == "success"){
+                        location.href = "/"; 
+                        console.log("order added");
+                    } else if(resp.status == "fail"){
+                        console.log("order failed");
+                }
+            }
+        })
     });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
