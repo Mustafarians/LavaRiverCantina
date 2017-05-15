@@ -1,6 +1,18 @@
+#canvas{
+    top: 15vh;
+    width: 80vw;
+    height: 80vh;   
+
+}
+
 #menuBut{
     position: absolute;
     width: 75vw;
     height: 50vh;
     top: 50px;
+}
+
+#2login{
+    position: absolute;
+
 }
