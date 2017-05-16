@@ -10338,12 +10338,21 @@ return jQuery;
     var item1But = document.getElementById("item1");
     var item2But = document.getElementById("item2");
     
+    var FoodItems = ["Tauntaun Steak", "Bantha Brisket", "Nerf Burger", "Womp Rat Ribs"];
+    
     var OrderItems = [];
     var OrderItemsQuant = [];
 
     item1But.addEventListener("click", function(){
-        OrderItems.push("Tauntaun Steak")
+        if(OrderItems.indexOf(FoodItems[1]) > -1){
+            var item = OrderItems.indexOf(FoodItems[1]);
+            OrderItemsQuant[item] = document.getElementById("item1Quant").value;
+        } else {
+        OrderItems.push(FoodItems[1]);
         OrderItemsQuant.push(document.getElementById("item1Quant").value)
+        }
+        console.log(OrderItems);
+        console.log(OrderItemsQuant);
     });
     
     item2But.addEventListener("click", function(){

@@ -44,7 +44,7 @@ app.get("/", function(req, res){
 });
 
 app.get("/admin", function(req, res){
-    if(session.level == 2){
+    if(req.session.level == 2){
         res.sendFile(pub+"/admin.html");
     } else {
         res.sendFile(pub+"/home.html");
@@ -52,9 +52,9 @@ app.get("/admin", function(req, res){
 });
 
 app.get("/kitchen", function(req,res){
-    if(session.level == 1){
+    if(req.session.level == 1){
         res.sendFile(pub+"/kitchen.html");
-    } else if (session.level == 2){
+    } else if (req.session.level == 2){
         res.sendFile(pub+"/kitchen.html");
     } else {
         res.sendFile(pub+"/home.html");
@@ -127,7 +127,7 @@ app.post("/order66", function(req, resp){
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
-                    client.query("INSERT INTO orders (itemnum, quantity, ordername) VALUES ($1, $2, $3)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName], function(err, result){
+                    client.query("INSERT INTO orders (itemnum, quantity, ordername) VALUES ($1, $2, $3, $4)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing"], function(err, result){
                     done();
                     if(err){
                         console.log(err);
