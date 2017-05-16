@@ -10334,27 +10334,36 @@ return jQuery;
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
     
     
-    var loginBut = document.getElementById("loginBut");
+    var startBut = document.getElementById("startBut");
+    var stopBut = document.getElementById("stopBut");
    
-    loginBut.addEventListener("click", function(){
-    
-        var uName = document.getElementById("uName").value;
-        var passC = document.getElementById("passC").value;
-            
+    startBut.addEventListener("click", function(){
+        
             $.ajax({
-                url:"/login",
+                url:"/cookStart",
                 type:"post",
-                data:{
-                    passC:passC,
-                    uName:uName
-                },
                 success:function(resp){
                 
                     if(resp.status == "success"){
-                        location.href = "/authoritylevel"; 
-                        console.log("logged in");     
+                        console.log("cooking started");     
                     } else if(resp.status == "fail"){
-                        console.log("login failed");
+                        console.log("burnt everything");
+                }
+            }
+        })
+    });
+    
+    stopBut.addEventListener("click", function(){
+        
+            $.ajax({
+                url:"/cookStop",
+                type:"post",
+                success:function(resp){
+                
+                    if(resp.status == "success"){
+                        console.log("cooking stopped");     
+                    } else if(resp.status == "fail"){
+                        console.log("don't stop believing");
                 }
             }
         })
