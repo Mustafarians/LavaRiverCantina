@@ -20,7 +20,7 @@ var dbURL = process.env.DATABASE_URL || "postgres://postgres:webdev@localhost:54
 app.use("/scripts", express.static("build"));
 
 //images
-app.use("/styles", express.static("css"));
+app.use("/styles", express.static("stylesheets"));
 
 //redirect /imgs to img folder
 app.use("/images", express.static("img"));
