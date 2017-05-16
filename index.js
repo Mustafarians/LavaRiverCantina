@@ -16,11 +16,13 @@ var io = require("socket.io")(server);
 const pg = require("pg");
 var dbURL = process.env.DATABASE_URL || "postgres://postgres:webdev@localhost:5432/lrc";
 
+var orderName = 0;
+
 //redirect /scripts to build folder
 app.use("/scripts", express.static("build"));
 
 //images
-app.use("/styles", express.static("css"));
+app.use("/styles", express.static("stylesheets"));
 
 //redirect /imgs to img folder
 app.use("/images", express.static("img"));
@@ -41,8 +43,18 @@ app.get("/", function(req, res){
         res.sendFile(pub+"/home2.html");
 });
 
+app.get("/authoritylevel", function(req, res){
+    if(req.session.level == 1){
+        res.sendFile(pub+"/kitchen.html");
+    } else if (req.session.level == 2){
+        res.sendFile(pub+"/admin.html");
+    } else {
+        res.sendFile(pub+"/home.html");
+    }
+});
+
 app.get("/admin", function(req, res){
-    if(session.level == 2){
+    if(req.session.level == 2){
         res.sendFile(pub+"/admin.html");
     } else {
         res.sendFile(pub+"/home.html");
@@ -50,9 +62,9 @@ app.get("/admin", function(req, res){
 });
 
 app.get("/kitchen", function(req,res){
-    if(session.level == 1){
+    if(req.session.level == 1){
         res.sendFile(pub+"/kitchen.html");
-    } else if (session.level == 2){
+    } else if (req.session.level == 2){
         res.sendFile(pub+"/kitchen.html");
     } else {
         res.sendFile(pub+"/home.html");
@@ -91,11 +103,11 @@ app.post("/login", function(req, resp){
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
-                req.session.Level = result.rows[0].Level;
+                req.session.level = result.rows[0].level;
                 
                 var obj = {
                     status:"success",
-                    level:result.rows[0].Level
+                    level:result.rows[0].level
                 }
                 
                 resp.send(obj);
@@ -108,39 +120,44 @@ app.post("/login", function(req, resp){
     
 })
 
-app.post("/order1", function(req, resp){
-    var foodname = req.body.foodname;
-    var quantity = req.body.quantity;
+app.post("/order66", function(req, resp){
+    var OrderItems = req.body.OrderItems;
+    var OrderItemsQuant = req.body.OrderItemsQuant;
     
     pg.connect(dbURL, function(err, client, done){
         if(err){
             console.log(err);
             resp.end("FAIL");
         }
-            client.query("SELECT * FROM menu WHERE foodname = $1", [foodname], function(err, result){
+        
+        for(i = 0; i < OrderItems.length; i++){
+         (function(index) {client.query("SELECT * FROM menu WHERE foodname = $1", [OrderItems[index]], function(err, result){
             done();
             if(err){
                 console.log(err);
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
-                client.query("INSERT INTO orders (itemnum, quantity) VALUES ($1, $2)", [result.rows[0].itemnum, quantity], function(err, result){
+                    client.query("INSERT INTO orders (itemnum, quantity, ordername) VALUES ($1, $2, $3)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName], function(err, result){
                     done();
                     if(err){
                         console.log(err);
                         resp.end("FAIL");
                     }
                     
-                    var obj = {
-                        status:"success"
-                    }
-                    resp.send(obj);
                 })
             } else {
                 console.log("err1");
                 resp.end("FAIL");
-            }
-        })
+            }     
+        })   
+    }) (i);
+        }
+        orderName++;
+        var obj = {
+                status:"success"
+                }
+            resp.send(obj);
         })
 })
 
