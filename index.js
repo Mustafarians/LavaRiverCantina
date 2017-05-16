@@ -43,8 +43,18 @@ app.get("/", function(req, res){
         res.sendFile(pub+"/home.html");
 });
 
+app.get("/authoritylevel", function(req, res){
+    if(req.session.level == 1){
+        res.sendFile(pub+"/kitchen.html");
+    } else if (req.session.level == 2){
+        res.sendFile(pub+"/admin.html");
+    } else {
+        res.sendFile(pub+"/home.html");
+    }
+});
+
 app.get("/admin", function(req, res){
-    if(session.level == 2){
+    if(req.session.level == 2){
         res.sendFile(pub+"/admin.html");
     } else {
         res.sendFile(pub+"/home.html");
@@ -52,9 +62,9 @@ app.get("/admin", function(req, res){
 });
 
 app.get("/kitchen", function(req,res){
-    if(session.level == 1){
+    if(req.session.level == 1){
         res.sendFile(pub+"/kitchen.html");
-    } else if (session.level == 2){
+    } else if (req.session.level == 2){
         res.sendFile(pub+"/kitchen.html");
     } else {
         res.sendFile(pub+"/home.html");
@@ -92,11 +102,11 @@ app.post("/login", function(req, resp){
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
-                req.session.Level = result.rows[0].Level;
+                req.session.level = result.rows[0].level;
                 
                 var obj = {
                     status:"success",
-                    level:result.rows[0].Level
+                    level:result.rows[0].level
                 }
                 
                 resp.send(obj);

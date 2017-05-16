@@ -10351,6 +10351,7 @@ return jQuery;
                 success:function(resp){
                 
                     if(resp.status == "success"){
+                        location.href = "/authoritylevel"; 
                         console.log("logged in");     
                     } else if(resp.status == "fail"){
                         console.log("login failed");
