@@ -22,7 +22,7 @@ var orderName = 0;
 app.use("/scripts", express.static("build"));
 
 //images
-app.use("/styles", express.static("css"));
+app.use("/styles", express.static("stylesheets"));
 
 //redirect /imgs to img folder
 app.use("/images", express.static("img"));
