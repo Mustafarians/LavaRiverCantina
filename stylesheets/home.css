@@ -1,19 +1,25 @@
-body {
-    background-image :url("/images/databank_mustafar_01_169_5b470758.jpeg");
+#canvas{
+    top: 15vh;
+    width: 80vw;
+    height: 80vh;
+
+}
+
+#menuBut{
+    position: absolute;
+    width: 75vw;
+    height: 50vh;
+    top: 50px;
+}
+<<<<<<< HEAD
+
+#2login{
+    position: absolute;
+
+}
+=======
+#body {
+    background-image :url("/img/databank_mustafar_01_169_5b470758.jpeg");
     background-size:cover;
 }
-
-.but1{
-    width: 200px;
-    height: 60px;
-}
-.but2{
-    width: 200px;
-    height: 60px;
-}
-
-#buttons{
-    padding-left: 50vw;
-    padding-top: 50vh;
-    margin: auto;
-}
+>>>>>>> 3a0e70a14dda2125177f13ae9e49442c7573388e

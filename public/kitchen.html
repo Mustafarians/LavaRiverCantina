@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>The LRC - Kitchen</title>
+        <title>The LRC - Kitchen
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
+
     <body>
-        <div id="logoDiv">
+        <div class="container-fluid" id="pageCanvas">
+            <div class="row" id="menuBar">
+
+                <div class="col-md-3" id="homeBut">
+                    <img id="logoImg" src="../images/logo2.png"/>
+                </div>
+
+                <div class="col-md-3" id="menuBut">
+                    <h2>Menu</h2>
+                </div>
+
+                <div id="trackerBut" class="col-md-3">
+                    <h2>Tracker</h2>
+                </div>
+
+                <div id="cartBut" class="co-md-3">
+                    <h2>Cart</h2>
+                </div>
+
+            </div>
+
+            <div id="incomingOrders" class="row">
+                <h2>Orders</h2>
+
+            </div>
         </div>
             <button id = "startBut">Start cooking</button>
             <button id = "stopBut">Stop cooking</button>
