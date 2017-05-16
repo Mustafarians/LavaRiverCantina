@@ -1,101 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <title>The LRC - Menu Page</title>
 
-    <head>
-        <title>The LRC - Menu</title>
-        <link rel="stylesheet" type="text/css" href="../stylesheets/menu.css">
-        <style>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/menu.css">
 
-            #menuBar {
-                background-color: darkred;
-                width: 100%;
-                height: 15%;
-                position: absolute;
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            }
-            #logoImg {
-                width: 13vh;
-                height: 13vh;
-                position: absolute;
-                left: 8px;
-                top: 5px;
-            }
-            #menuBut {
-                left: 150px;
-                top: 10px;
-                position: absolute;
-                background-color: aliceblue;
-                color: darkred;
-                padding-left: 5px;
-                padding-right: 5px;
-                display: inline-block;
-            }
-            #pageCanvas {
-                top:0vh;
-                width: 100vw;
-                height: 85vh;
-                position: relative;
-                z-index: -1;
-            }
-            #kitchenBut {
-                left: 250px;
-                top: 10px;
-                position: absolute;
-                background-color: aliceblue;
-                color: darkred;
-                padding-left: 5px;
-                padding-right: 5px;
-                display: inline-block;
-            }
-            #trackerBut {
-                left: 380px;
-                top: 10px;
-                position: absolute;
-                background-color: aliceblue;
-                color: darkred;
-                padding-left: 5px;
-                padding-right: 5px;
-                display: inline-block;
-            }
-            #lavaBg {
-                width: 100vw;
-                height: 110vh;
-            }
-        </style>
-    </head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <body>
-        <div id="menuBar">
-            <div id="logoDiv">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-                <img id="logoImg" src="../images/logo2.png"/>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-                <div id="menuBut">
-                    <h2>Menu</h2>
-                </div>
+</head>
 
-                <!--<div id="kitchenBut">-->
-                    <!--<h2>Kitchen</h2>-->
-                <!--</div>-->
+<body>
 
-                <div id="trackerBut">
-                    <h2>Tracker</h2>
-                </div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
 
-            </div>
+        <div class="navbar-header" id="menuBar">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuBarItems">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">THE LAVA RIVER CANTINA</a>
+        </div>
 
-            <div id="pageCanvas">
-                <img id="lavaBg" src="../images/lavaBackground.jpg" />
+        <div class="collapse navbar-collapse" id="menuBarItems">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/menu">Menu</a></li>
+                <li><a>Tracker</a></li>
+                <li><a>Cart</a></li>
+            </ul>
+
+            <div class="nav navbar-nav navbar-right">
+                <li><a href="/">Logout</a></li>
             </div>
         </div>
-        <button id = 'item1'>Tauntaun Steak</button>
-        <input id = "item1Quant" placeholder= "Quantity">
-        
-        <input id = "item2Quant" placeholder= "Bantha Ribs Quantity">
-        <button id = 'item2'>Bantha Ribs</button>
-        
-        <button id = 'checkout'>Checkout</button>
-    </body>
-    <script src="/scripts/menubundle.js"></script>
+    </div>
+</nav>
 
+<div class="container-fluid" style=" background: url(../images/lavaBackground2.jpg); background-repeat: no-repeat; background-size: cover; position: ; z-index: -1; width: 100vw; height: 100vh">
+    <div class="container" id="itemCanvas">
+        <div class="row" id="menuItems">
+
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Bantha Brisket</div>
+
+                    <div class="panel-body">
+                        <img src="../images/menuImages/bantha-brisket.jpg" class="img-responsive" style="width:300px; height: 300px; border: solid;" alt="Image">
+                    </div>
+
+                    <div class="panel-footer">
+                        <p class="text-success">Cost: 10 Imperial Credits Each</p>
+                        <input type="text" id="item1Quant" placeholder="Enter Quantity for Order"/>
+                        <button type="button" id="item1" class="btn btn-primary">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Tauntaun Steak</div>
+
+                    <div class="panel-body">
+                        <img src="../images/menuImages/Tauntaun-steak.jpg" class="img-responsive" style="width:300px; height: 300px; border: solid" alt="Image">
+                    </div>
+
+                    <div class="panel-footer">
+                        <p class="text-success">Cost: 10 Imperial Credits Each</p>
+                        <input type="text" id="item2Quant" placeholder="Enter Quantity for Order"/>
+                        <button type="button" id="item2" class="btn btn-primary">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Nerf Burger</div>
+
+                    <div class="panel-body">
+                        <img src="../images/menuImages/nerf-burger.jpg" class="img-responsive" style="width:300px; height: 300px; border: solid" alt="Image">
+                    </div>
+
+                    <div class="panel-footer">
+                        <p class="text-success">Cost: 10 Imperial Credits Each</p>
+                        <input type="text" id="item3Quant" placeholder="Enter Quantity for Order"/>
+                        <button type="button" id="item3" class="btn btn-primary">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Womb Rat Ribs</div>
+
+                    <div class="panel-body">
+                        <img src="../images/menuImages/womb-rat-ribs.jpg" class="img-responsive" style="width:300px; height: 300px; border: solid" alt="Image">
+                    </div>
+
+                    <div class="panel-footer">
+                        <p class="text-success">Cost: 10 Imperial Credits Each</p>
+                        <input type="text" id="item3Quant" placeholder="Enter Quantity for Order"/>
+                        <button type="button" id="item3" class="btn btn-primary">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/scripts/menubundle.js"></script>
+</body>
 </html>
