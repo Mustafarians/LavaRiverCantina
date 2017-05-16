@@ -38,7 +38,7 @@ app.use(session({
 }));
 
 app.get("/", function(req, res){
-        res.sendFile(pub+"/home.html");
+        res.sendFile(pub+"/home2.html");
 });
 
 app.get("/admin", function(req, res){
@@ -66,6 +66,7 @@ app.get("/login", function(req, res){
 app.get("/menu", function(req, res){
     res.sendFile(pub+"/menu.html");
 });
+
 
 io.on("connection", function(socket){
 
