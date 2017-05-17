@@ -1,13 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>The LRC - Kitchen</title>
-    </head>
-    <body>
-        <div id="logoDiv">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The LRC - Menu Page</title>
+
+    <link rel="stylesheet" type="text/css" href="../stylesheets/kitchen.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body style="background-image: url("../images/lavaBackground2.jpg")">
+
+<!--<nav class="navbar navbar-inverse">-->
+    <!--<div class="container-fluid">-->
+
+        <!--<div class="navbar-header" id="menuBar">-->
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuBarItems">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a href="/" class="navbar-brand">THE LAVA RIVER CANTINA</a>-->
+        <!--</div>-->
+
+        <!--<div class="collapse navbar-collapse" id="menuBarItems">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a href="/menu">Menu</a></li>-->
+                <!--<li><a>Tracker</a></li>-->
+                <!--<li><a>Cart</a></li>-->
+            <!--</ul>-->
+
+            <!--<div class="nav navbar-nav navbar-right">-->
+                <!--<li><a href="/">Logout</a></li>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+<div class="container">
+    <div class="jumbotron">
+        <h2>Kitchen</h2>
+        <p>Watch your step, or we're serving you next. <span class="glyphicon glyphicon-thumbs-up"></span></p>
+    </div>
+</div>
+
+<div class="container" id="kitchenCanvas" style="background-color: lightgrey; padding: 10px">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Order #12345</div>
+
+                <div class="panel-body">
+                    <p class="col-md-6">Bantha Brisket</p>
+                    <p class="col-md-6">Not Started</p>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="button" id="item1" class="btn btn-success">Start Cooking</button>
+                </div>
+            </div>
         </div>
-            <button id = "startBut">Start cooking</button>
-            <button id = "stopBut">Stop cooking</button>
-        <script src="/scripts/kitchenbundle.js"></script>
-    </body>
+
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Order #12345</div>
+
+                <div class="panel-body">
+                    <p class="col-md-6">Tauntaun Steak</p>
+                    <p class="col-md-6">Cooking</p>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="button" id="item1" class="btn btn-success">Start Cooking</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Order #12345</div>
+
+                <div class="panel-body">
+                    <p class="col-md-6">Nerf Burger</p>
+                    <p class="col-md-6">Complete</p>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="button" id="item1" class="btn btn-success">Start Cooking</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Order #12345</div>
+
+                <div class="panel-body">
+                    <p class="col-md-6">Nerf Burger</p>
+                    <p class="col-md-6">Complete</p>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="button" id="item1" class="btn btn-success">Start Cooking</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Order #12345</div>
+
+                <div class="panel-body">
+                    <p class="col-md-6">Nerf Burger</p>
+                    <p class="col-md-6">Complete</p>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="button" id="item1" class="btn btn-success">Start Cooking</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Order #12345</div>
+
+                <div class="panel-body">
+                    <p class="col-md-6">Nerf Burger</p>
+                    <p class="col-md-6">Complete</p>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="button" id="item1" class="btn btn-success">Start Cooking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>
