@@ -4,17 +4,33 @@ $(document).ready(function(){
     var item1But = document.getElementById("item1");
     var item2But = document.getElementById("item2");
     
+    var FoodItems = ["Tauntaun Steak", "Bantha Brisket", "Nerf Burger", "Womp Rat Ribs", "Lava Flea Legs", "Meatlump", "Churro", "Cracknel", "Banzon", "Exonium", "Drapsha", "Food Pearls", "Lamito", "Mallow", "Firkrann Fries", "Selkath Salad", "Grainmush", "Blue Milkshakes", "Corellian Ale", "Turbofizz", "Twin Suns Special"];
+    
     var OrderItems = [];
     var OrderItemsQuant = [];
-
+    
+    var item = 0;
+    
+    var regEx = /^[0-6]{0,1}$/; //regular expression
+    
+    function Chek(mate, oItem) {
+        if(regEx.test(document.getElementById(mate).value) == true){
+            if(OrderItems.indexOf(FoodItems[oItem]) > -1){
+                item = OrderItems.indexOf(FoodItems[oItem]);
+                OrderItemsQuant[item] = document.getElementById(mate).value;
+            } else {
+                OrderItems.push(FoodItems[oItem]);
+                OrderItemsQuant.push(document.getElementById(mate).value)
+            }
+        }
+    }
+    
     item1But.addEventListener("click", function(){
-        OrderItems.push("Tauntaun Steak")
-        OrderItemsQuant.push(document.getElementById("item1Quant").value)
+    Chek("item1Quant", 0);
     });
     
     item2But.addEventListener("click", function(){
-        OrderItems.push("Bantha Ribs")
-        OrderItemsQuant.push(document.getElementById("item2Quant").value)
+        Chek("item2Quant", 1)
     });
     
     checkBut.addEventListener("click", function(){
