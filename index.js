@@ -137,7 +137,7 @@ app.post("/order66", function(req, resp){
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
-                    client.query("INSERT INTO orders (itemnum, quantity, ordername) VALUES ($1, $2, $3)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName], function(err, result){
+                    client.query("INSERT INTO orders (itemnum, quantity, ordername) VALUES ($1, $2, $3, $4)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing"], function(err, result){
                     done();
                     if(err){
                         console.log(err);
