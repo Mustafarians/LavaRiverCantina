@@ -10338,12 +10338,33 @@ return jQuery;
     var item1But = document.getElementById("item1");
     var item2But = document.getElementById("item2");
     
+<<<<<<< HEAD
     var FoodItems = ["Tauntaun Steak", "Bantha Brisket", "Nerf Burger", "Womp Rat Ribs"];
+=======
+    var FoodItems = ["Tauntaun Steak", "Bantha Brisket", "Nerf Burger", "Womp Rat Ribs", "Lava Flea Legs", "Meatlump", "Churro", "Cracknel", "Banzon", "Exonium", "Drapsha", "Food Pearls", "Lamito", "Mallow", "Firkrann Fries", "Selkath Salad", "Grainmush", "Blue Milkshakes", "Corellian Ale", "Turbofizz", "Twin Suns Special"];
+>>>>>>> 97aa2eb7fe0fa92fed39efa923e8049f0794779e
     
     var OrderItems = [];
     var OrderItemsQuant = [];
-
+    
+    var item = 0;
+    
+    var regEx = /^[0-6]{0,1}$/; //regular expression
+    
+    function Chek(mate, oItem) {
+        if(regEx.test(document.getElementById(mate).value) == true){
+            if(OrderItems.indexOf(FoodItems[oItem]) > -1){
+                item = OrderItems.indexOf(FoodItems[oItem]);
+                OrderItemsQuant[item] = document.getElementById(mate).value;
+            } else {
+                OrderItems.push(FoodItems[oItem]);
+                OrderItemsQuant.push(document.getElementById(mate).value)
+            }
+        }
+    }
+    
     item1But.addEventListener("click", function(){
+<<<<<<< HEAD
         if(OrderItems.indexOf(FoodItems[1]) > -1){
             var item = OrderItems.indexOf(FoodItems[1]);
             OrderItemsQuant[item] = document.getElementById("item1Quant").value;
@@ -10353,11 +10374,13 @@ return jQuery;
         }
         console.log(OrderItems);
         console.log(OrderItemsQuant);
+=======
+    Chek("item1Quant", 0);
+>>>>>>> 97aa2eb7fe0fa92fed39efa923e8049f0794779e
     });
     
     item2But.addEventListener("click", function(){
-        OrderItems.push("Bantha Ribs")
-        OrderItemsQuant.push(document.getElementById("item2Quant").value)
+        Chek("item2Quant", 1)
     });
     
     checkBut.addEventListener("click", function(){
