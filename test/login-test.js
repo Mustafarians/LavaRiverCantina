@@ -21,8 +21,7 @@ module.exports = {
         client
             .waitForElementVisible('body', 1000)
             .assert.title('L.R.C - Kitchen')
-            .assert.visible('button[id="startBut"]', 1000)
-            .assert.visible('button[id="stopBut"]', 1000)
+            .assert.visible('body', 1000)
             .end();
     }
 };
