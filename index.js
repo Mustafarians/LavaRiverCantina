@@ -79,6 +79,10 @@ app.get("/menu", function(req, res){
     res.sendFile(pub+"/menu.html");
 });
 
+app.get("/cart", function(req,res){
+    res.sendFile(pub+"/cart.html");
+});
+
 io.on("connection", function(socket){
 
     socket.on("disconnect", function(){

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The LRC - The Lava River Cantina</title>
+
+    <link rel="stylesheet" type="text/css" href="../stylesheets/cart.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse" datatype="affix">
+    <div class="container-fluid">
+
+        <div class="navbar-header" id="menuBar">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuBarItems">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">THE LAVA RIVER CANTINA</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="menuBarItems">
+            <ul class="nav navbar-nav">
+                <li><a href="/menu">Menu</a></li>
+                <li><a href="/tracker">Tracker</a></li>
+                <li class="active"><a href="/cart">Cart</a></li>
+            </ul>
+
+            <div class="nav navbar-nav navbar-right">
+                <li><a href="/">Logout</a></li>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div  class="col-md-12">
+            <h2>Cart</h2>
+            <p>Please review your cart before finalizing your order. Thank You.</p>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                    <th>Remove Item</th>
+                </tr>
+                </thead>
+                <tbody id="cartBody">
+                <tr>
+                    <td>Tauntaun Buger</td>
+                    <td>2</td>
+                    <td>$20</td>
+                    <td><button type="button" class="btn btn-danger">Remove</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" style="padding: 25px"><center>
+                <h4>Sub-Total: 20</h4>
+                <h4>Imperial Tax: 4</h4>
+                <h3>Total: 24</h3>
+                <button type="button" class="btn btn-success">Submit Order</button>
+            </center>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
