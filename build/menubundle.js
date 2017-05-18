@@ -10334,7 +10334,7 @@ return jQuery;
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
 
-    var checkBut = document.getElementById("checkout");
+//    var checkBut = document.getElementById("checkout");
     var item1But = document.getElementById("item1");
     var item2But = document.getElementById("item2");
     
@@ -10459,25 +10459,25 @@ return jQuery;
 //        Chek("item21Quant", 20)
 //    });
 //    
-    checkBut.addEventListener("click", function(){
-         if(OrderItems.length > 0){
-            $.ajax({
-                url:"/order66",
-                type:"post",
-                data:{
-                    OrderItems:OrderItems,
-                    OrderItemsQuant:OrderItemsQuant
-                },
-                success:function(resp){
-                    if(resp.status == "success"){
-                        location.href = "/tracker";   
-                    } else if(resp.status == "fail"){
-                        console.log("order failed");
-                }
-            }
-        })
-         }
-    });
+//    checkBut.addEventListener("click", function(){
+//         if(OrderItems.length > 0){
+//            $.ajax({
+//                url:"/order66",
+//                type:"post",
+//                data:{
+//                    OrderItems:OrderItems,
+//                    OrderItemsQuant:OrderItemsQuant
+//                },
+//                success:function(resp){
+//                    if(resp.status == "success"){
+//                        location.href = "/tracker";   
+//                    } else if(resp.status == "fail"){
+//                        console.log("order failed");
+//                }
+//            }
+//        })
+//         }
+//    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
