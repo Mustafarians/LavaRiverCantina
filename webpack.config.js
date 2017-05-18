@@ -8,6 +8,7 @@ var config = {
     entry:{
         "home":jF+"/home.js",
         "login":jF+"/login.js",
+        "cart":jF+"/cart.js",
         "menu":jF+"/menu.js"
     },
     output: {
