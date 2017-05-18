@@ -12,6 +12,10 @@ body{
 
 }
 
+.headingColor{
+    color: white;
+}
+
 #itemContainer{
     /*background: url(../images/lavaBackground2.jpg);*/
     /*background-repeat: no-repeat;*/
