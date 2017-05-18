@@ -1,54 +1,24 @@
-#menuBar {
-    background-color: darkred;
-    width: 100%;
-    height: 15%;
-    position: absolute;
-}
-
-#logoImg {
-    width: 13vh;
-    height: 13vh;
-    position: absolute;
-    left: 8px;
-    top: 5px;
-}
-
-#menuBut {
-    left: 150px;
+.foodPanel{
     top: 10px;
-    position: absolute;
-    background-color: aliceblue;
-    color: darkred;
-    padding-left: 5px;
-    padding-right: 5px;
-    display: inline-block;
 }
 
-#pageCanvas {
-    top:15vh;
+body{
+    background: url(../images/lavaBackground2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: static;
+    z-index: -1;
+
+}
+
+#itemContainer{
+    /*background: url(../images/lavaBackground2.jpg);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    /*position: absolute;*/
+    z-index: -1;
     width: 100vw;
-    height: 85vh;
-    position: relative;
-}
-
-#kitchenBut {
-    left: 250px;
-    top: 10px;
-    position: absolute;
-    background-color: aliceblue;
-    color: darkred;
-    padding-left: 5px;
-    padding-right: 5px;
-    display: inline-block;
-}
-
-#trackerBut {
-    left: 380px;
-    top: 10px;
-    position: absolute;
-    background-color: aliceblue;
-    color: darkred;
-    padding-left: 5px;
-    padding-right: 5px;
-    display: inline-block;
+    height: 100vh;
+    top: 50px;
 }
