@@ -83,6 +83,10 @@ app.get("/cart", function(req,res){
     res.sendFile(pub+"/cart.html");
 });
 
+app.get("/tracker", function(req,res){
+    res.sendFile(pub+"/tracker.html");
+});
+
 io.on("connection", function(socket){
 
     socket.on("disconnect", function(){
