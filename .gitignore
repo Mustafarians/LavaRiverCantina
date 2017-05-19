@@ -1,5 +1,6 @@
 #Ignored directory
 .idea
+reports
 
 #Ignored filename
 .DS_Store
