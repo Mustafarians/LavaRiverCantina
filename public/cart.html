@@ -57,7 +57,6 @@
                     <th>Item</th>
                     <th>Quantity</th>
                     <th>Cost</th>
-                    <th>Remove Item</th>
                 </tr>
                 </thead>
                 <tbody id="cartBody">
@@ -65,7 +64,6 @@
                     <td>Tauntaun Buger</td>
                     <td>2</td>
                     <td>$20</td>
-                    <td><button type="button" class="btn btn-danger">Remove</button></td>
                 </tr>
                 </tbody>
             </table>
@@ -73,15 +71,16 @@
 
         <div class="row">
             <div class="col-md-12" style="padding: 25px"><center>
-                <h4>Sub-Total: 20</h4>
-                <h4>Imperial Tax: 4</h4>
-                <h3>Total: 24</h3>
-                <button type="button" class="btn btn-success">Submit Order</button>
+                <h4 id = "sub">Sub-Total: 20</h4>
+                <h4 id = "tax">Imperial Tax: 4</h4>
+                <h3 id = "total">Total: 24</h3>  
+                <button type="button" class="btn btn-success" id = "submitBut">Submit Order</button>
             </center>
             </div>
         </div>
     </div>
 </div>
 
+        <script src="/scripts/cartbundle.js"></script>
 </body>
 </html>
