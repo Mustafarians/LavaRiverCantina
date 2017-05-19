@@ -26,7 +26,7 @@ module.exports = {
         client
             .waitForElementVisible('body', 1000)
             .assert.title('L.R.C. - Cart')
-            .assert.visible('butoon[id="submitBut"]', 1000)
+            .assert.visible('button[id="submitBut"]', 1000)
             .pause(500)
             .click('button[id="backBut"]')
             .pause(500)
@@ -49,7 +49,7 @@ module.exports = {
         client
             .waitForElementVisible('body', 1000)
             .assert.title('L.R.C. - Cart')
-            .assert.visible('butoon[id="submitBut"]', 1000)
+            .assert.visible('button[id="submitBut"]', 1000)
             .pause(500)
             .click('button[id="submitBut"]')
             .end();
