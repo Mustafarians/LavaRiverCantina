@@ -14,7 +14,7 @@ var server = require("http").createServer(app);
 var pub = path.resolve(__dirname, "public");
 var io = require("socket.io")(server);
 const pg = require("pg");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:x@localhost:5432/lrc";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:webdev@localhost:5432/lrc";
 
 var orderName = 0;
 
@@ -127,9 +127,58 @@ app.post("/login", function(req, resp){
     
 })
 
+app.post("/storing", function(req, resp){
+    req.session.items = req.body.OrderItems;
+    req.session.quant = req.body.OrderItemsQuant;
+    
+    var obj = {
+        status:"success"
+    }
+    resp.send(obj);
+})
+
+app.post("/cartFill", function(req, resp){
+    var OrderItems = req.session.items;
+    var OrderItemsQuant = req.session.quant;
+    var price = [];
+    
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            resp.end("FAIL");
+        }
+        for(i = 0; i < OrderItems.length; i++){
+            
+            (function(index){client.query("SELECT * FROM menu WHERE foodname = $1", [OrderItems[index]], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                resp.end("FAIL");
+            }
+            if(result.rows.length > 0){
+                price.push(result.rows[0].price)
+            } else {
+                resp.end("FAIL");
+            }
+             if(index == OrderItems.length -1){
+                 var obj = {
+                    status:"success",
+                    OrderItems:OrderItems,
+                    price:price,
+                    OrderItemsQuant:OrderItemsQuant
+                }
+                resp.send(obj);
+             }
+            })
+            })(i)
+        }
+                
+    })
+})
+
 app.post("/order66", function(req, resp){
-    var OrderItems = req.body.OrderItems;
-    var OrderItemsQuant = req.body.OrderItemsQuant;
+    var OrderItems = req.session.items;
+    var OrderItemsQuant = req.session.quant;
     
     pg.connect(dbURL, function(err, client, done){
         if(err){
@@ -145,7 +194,7 @@ app.post("/order66", function(req, resp){
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
-                    client.query("INSERT INTO orders (itemnum, quantity, ordername) VALUES ($1, $2, $3, $4)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing"], function(err, result){
+                    client.query("INSERT INTO orders (itemnum, quantity, ordername, status) VALUES ($1, $2, $3, $4)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing"], function(err, result){
                     done();
                     if(err){
                         console.log(err);

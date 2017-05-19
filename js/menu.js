@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
-//    var checkBut = document.getElementById("checkout");
+    var checkBut = document.getElementById("checkBut");
     var item1But = document.getElementById("item1");
     var item2But = document.getElementById("item2");
+    var item3But = document.getElementById("item3");
+    var item4But = document.getElementById("item4");
     
-    var FoodItems = ["Tauntaun Steak", "Bantha Brisket", "Nerf Burger", "Womp Rat Ribs", "Lava Flea Legs", "Meatlump", "Churro", "Cracknel", "Banzon", "Exonium", "Drapsha", "Food Pearls", "Lamito", "Mallow", "Firkrann Fries", "Selkath Salad", "Grainmush", "Blue Milkshakes", "Corellian Ale", "Turbofizz", "Twin Suns Special"];
+    var FoodItems = ["Bantha Brisket", "Tauntaun Steak", "Nerf Burger", "Womp Rat Ribs", "Lava Flea Legs", "Meatlump", "Churro", "Cracknel", "Banzon", "Exonium", "Drapsha", "Food Pearls", "Lamito", "Mallow", "Firkrann Fries", "Selkath Salad", "Grainmush", "Blue Milkshakes", "Corellian Ale", "Turbofizz", "Twin Suns Special"];
     
     var OrderItems = [];
     var OrderItemsQuant = [];
@@ -49,13 +51,14 @@ $(document).ready(function(){
         Chek("item2Quant", 1)
     });
     
-//    item3But.addEventListener("click", function(){
-//        Chek("item3Quant", 2)
-//    });
-//    
-//    item4But.addEventListener("click", function(){
-//        Chek("item4Quant", 3)
-//    });
+    item3But.addEventListener("click", function(){
+    Chek("item3Quant", 2);
+    });
+    
+    item4But.addEventListener("click", function(){
+        Chek("item4Quant", 3)
+    });
+    
 //    
 //    item5But.addEventListener("click", function(){
 //        Chek("item5Quant", 4)
@@ -125,23 +128,23 @@ $(document).ready(function(){
 //        Chek("item21Quant", 20)
 //    });
 //    
-//    checkBut.addEventListener("click", function(){
-//         if(OrderItems.length > 0){
-//            $.ajax({
-//                url:"/order66",
-//                type:"post",
-//                data:{
-//                    OrderItems:OrderItems,
-//                    OrderItemsQuant:OrderItemsQuant
-//                },
-//                success:function(resp){
-//                    if(resp.status == "success"){
-//                        location.href = "/tracker";   
-//                    } else if(resp.status == "fail"){
-//                        console.log("order failed");
-//                }
-//            }
-//        })
-//         }
-//    });
+    checkBut.addEventListener("click", function(){
+         if(OrderItems.length > 0){
+            $.ajax({
+                url:"/storing",
+                type:"post",
+                data:{
+                    OrderItems:OrderItems,
+                    OrderItemsQuant:OrderItemsQuant
+                },
+                success:function(resp){
+                    if(resp.status == "success"){
+                        location.href = "/cart";   
+                    } else if(resp.status == "fail"){
+                        console.log("order failed");
+                }
+            }
+        })
+         }
+    });
 });
