@@ -20,7 +20,7 @@ module.exports = {
             .click('button[id="item2"]')
             .pause(100)
             .setValue('input[id="item1Quant"]', '2')
-            .click('button[id="item3"]')
+            .click('button[id="item1"]')
             .pause(100)
             .click('button[id="checkBut"]')
             .pause(500)
