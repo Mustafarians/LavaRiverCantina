@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-    var checkBut = document.getElementById("checkout");
+    var checkBut = document.getElementById("checkBut");
     var item1But = document.getElementById("item1");
     var item2But = document.getElementById("item2");
     var item3But = document.getElementById("item3");
     var item4But = document.getElementById("item4");
     
-    var FoodItems = ["Tauntaun Steak", "Bantha Brisket", "Nerf Burger", "Womp Rat Ribs", "Lava Flea Legs", "Meatlump", "Churro", "Cracknel", "Banzon", "Exonium", "Drapsha", "Food Pearls", "Lamito", "Mallow", "Firkrann Fries", "Selkath Salad", "Grainmush", "Blue Milkshakes", "Corellian Ale", "Turbofizz", "Twin Suns Special"];
+    var FoodItems = ["Bantha Brisket", "Tauntaun Steak", "Nerf Burger", "Womp Rat Ribs", "Lava Flea Legs", "Meatlump", "Churro", "Cracknel", "Banzon", "Exonium", "Drapsha", "Food Pearls", "Lamito", "Mallow", "Firkrann Fries", "Selkath Salad", "Grainmush", "Blue Milkshakes", "Corellian Ale", "Turbofizz", "Twin Suns Special"];
     
     var OrderItems = [];
     var OrderItemsQuant = [];

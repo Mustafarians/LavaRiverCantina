@@ -43,10 +43,6 @@ app.get("/", function(req, res){
         res.sendFile(pub+"/home.html");
 });
 
-app.get("/cart", function(req, res){
-        res.sendFile(pub+"/cart.html");
-});
-
 app.get("/authoritylevel", function(req, res){
     if(req.session.level == 1){
         res.sendFile(pub+"/kitchen.html");
@@ -131,6 +127,7 @@ app.post("/login", function(req, resp){
     
 })
 
+
 app.post("/storing", function(req, resp){
     req.session.items = req.body.OrderItems;
     req.session.quant = req.body.OrderItemsQuant;
@@ -145,7 +142,6 @@ app.post("/cartFill", function(req, resp){
     var OrderItems = req.session.items;
     var OrderItemsQuant = req.session.quant;
     var price = [];
-    var foodname = [];
     
     pg.connect(dbURL, function(err, client, done){
         if(err){
@@ -153,7 +149,8 @@ app.post("/cartFill", function(req, resp){
             resp.end("FAIL");
         }
         for(i = 0; i < OrderItems.length; i++){
-            client.query("SELECT * FROM menu WHERE itemnum = $1", [OrderItems[i]], function(err, result){
+            
+            (function(index){client.query("SELECT * FROM menu WHERE foodname = $1", [OrderItems[index]], function(err, result){
             done();
             if(err){
                 console.log(err);
@@ -161,23 +158,22 @@ app.post("/cartFill", function(req, resp){
             }
             if(result.rows.length > 0){
                 price.push(result.rows[0].price)
-                foodname.push(result.rows[0].foodname)
             } else {
-                console.log("err1");
                 resp.end("FAIL");
             }
-        })
+             if(index == OrderItems.length -1){
+                 var obj = {
+                    status:"success",
+                    OrderItems:OrderItems,
+                    price:price,
+                    OrderItemsQuant:OrderItemsQuant
+                }
+                resp.send(obj);
+             }
+            })
+            })(i)
         }
-        
-    var obj = {
-        status:"success",
-        OrderItems:OrderItems,
-        OrderItemsQuant:OrderItemsQuant,
-        price:price,
-        foodname:foodname
-    }
-    resp.send(obj);
-        
+                
     })
 })
 
@@ -221,6 +217,7 @@ app.post("/order66", function(req, resp){
             resp.send(obj);
         })
 })
+
 
 //listen to the server and open up a port
 server.listen(port, function(err){

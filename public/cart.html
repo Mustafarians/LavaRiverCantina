@@ -3,7 +3,7 @@
 <head>
     <title>The LRC - The Lava River Cantina</title>
 
-    <link rel="stylesheet" type="text/css" href="../stylesheets/cart.css">
+    <link rel="stylesheet" type="text/css" href="/styles/kitchen.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -60,14 +60,11 @@
                 </tr>
                 </thead>
                 <tbody id="cartBody">
-                    
-                <div id = 'fill1'>    
                 <tr>
                     <td>Tauntaun Buger</td>
                     <td>2</td>
                     <td>$20</td>
                 </tr>
-                  </div>
                     
                 </tbody>
             </table>
@@ -76,18 +73,17 @@
         <div class="row">
             <div class="col-md-12" style="padding: 25px"><center>
                 
-                <div id = 'fill2'>
-                <h4>Sub-Total: 20</h4>
-                <h4>Imperial Tax: 4</h4>
-                <h3>Total: 24</h3>
-                </div>
-                
-                <button type="button" class="btn btn-success">Submit Order</button>
+                <h4 id = "sub">Sub-Total: 20</h4>
+                <h4 id = "tax">Imperial Tax: 4</h4>
+                <h3 id = "total">Total: 24</h3>   
+                    
+                <button type="button" class="btn btn-success" id = "submitBut">Submit Order</button>
             </center>
             </div>
         </div>
     </div>
 </div>
+    
         <script src="/scripts/cartbundle.js"></script>
 
 </body>
