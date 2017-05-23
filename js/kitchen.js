@@ -58,17 +58,17 @@ $(document).ready(function(){
         }
     });
     
-    function cook(oName){
-        for(i = 0; i < oName.length; i++){
-            setTimeout(cook, 5000);
-            oName[i].status = "Cooked";
-            $.ajax({
-                url:"/cooked",
-                type:"post",
-                data:
-            })
-        }
-    };
+//    function cook(oName){
+//        for(i = 0; i < oName.length; i++){
+//            setTimeout(cook, 5000);
+//            oName[i].status = "Cooked";
+//            $.ajax({
+//                url:"/cooked",
+//                type:"post",
+//                data:
+//            })
+//        }
+//    };
     
     it1.addEventListener("click", function(){
         

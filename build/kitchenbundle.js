@@ -10392,9 +10392,23 @@ return jQuery;
         }
     });
     
+//    function cook(oName){
+//        for(i = 0; i < oName.length; i++){
+//            setTimeout(cook, 5000);
+//            oName[i].status = "Cooked";
+//            $.ajax({
+//                url:"/cooked",
+//                type:"post",
+//                data:
+//            })
+//        }
+//    };
+    
     it1.addEventListener("click", function(){
         
     });
+    
+    
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
