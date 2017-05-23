@@ -1,22 +1,91 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <title>L.R.C - Home</title>
+<head>
+    <title>L.R.C - Home</title>
 
-        <link rel="stylesheet" type="text/css" href="/styles/home.css">
-    </head>
+    <link rel="stylesheet" type="text/css" href="/styles/home.css">
 
-    <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div id = "buttons">
-      <button class = "but1" id = '2login'>Login</button>
-      <div id="menuBut">
-      <button class = "but2" id = '2menu'>Menu</button>
-      </div>
-      <div id="logoDiv"></div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-inverse" datatype="affix">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuBarItems">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">THE LAVA RIVER CANTINA</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="menuBarItems">
+            <ul class="nav navbar-nav">
+                <li><a href="/menu">Menu</a></li>
+                <li><a href="/tracker">Tracker</a></li>
+            </ul>
+
+            <div class="nav navbar-nav navbar-right">
+                <li><a href="/cart">Cart</a></li>
+            </div>
+        </div>
     </div>
-        <script src="/scripts/homebundle.js"></script>
+</nav>
+
+<div class="container">
+    <div class="jumbotron-primary whiteText">
+        <h2>Welcome to the Lava River Cantina</h2>
+        <div id="hoursOperation">
+            <h3>Hours Of Operation:</h3>
+            <h4>Monday - Thursday: 9:00am - 5:00pm</h4>
+            <h4>Friday - Sunday  : 10:00am - 3:00am</h4>
+        </div>
+    </div>
+</div>
+
+<div class="container withMargin">
+    <button id="2menu" type="button" class="btn btn-primary btn-lg btn-block">Menu</button>
+    <button id="2login" type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#loginWindow">Administration Login</button>
+
+    <div class="modal fade" id="loginWindow">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!----------------Modal Header------------------>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Admin/Kitchen Login</h3>
+                </div>
+                <!----------------Modal Body------------------>
+                <div class="modal-body">
+                    <input id = "uName" class="form-control" placeholder= "Employee ID:">
+                    <input id = "passC" class="form-control" type="password" placeholder= "Passcode:">
+                </div>
+                <!----------------Modal Footer------------------>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block" id = "loginBut">LOG IN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="/scripts/homebundle.js"></script>
 
     </body>
 </html>
