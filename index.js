@@ -62,13 +62,13 @@ app.get("/admin", function(req, res){
 });
 
 app.get("/kitchen", function(req,res){
-    if(req.session.level == 1){
+//    if(req.session.level == 1){
         res.sendFile(pub+"/kitchen.html");
-    } else if (req.session.level == 2){
-        res.sendFile(pub+"/kitchen.html");
-    } else {
-        res.sendFile(pub+"/home.html");
-    }
+//    } else if (req.session.level == 2){
+//        res.sendFile(pub+"/kitchen.html");
+//    } else {
+//        res.sendFile(pub+"/home.html");
+//    }
 })
 
 app.get("/login", function(req, res){
@@ -211,11 +211,31 @@ app.post("/order66", function(req, resp){
         }
         orderName++;
         var obj = {
-                status:"success"
+                status:"success",
+                oName:orderName
                 }
             resp.send(obj);
         })
 })
+
+app.post("/ordchek", function(req, res){
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            res.end("FAIL");
+        }
+        client.query("SELECT * FROM orders WHERE status = $1 ORDER BY ordername ASC", ["Processing"], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                res.send({status:"fail"});
+            }
+            
+            res.send(result.rows);
+            });
+        });
+});
+
 
 //listen to the server and open up a port
 server.listen(port, function(err){
