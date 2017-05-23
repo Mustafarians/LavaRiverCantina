@@ -75,9 +75,9 @@ app.get("/kitchen", function(req,res){
 //    }
 })
 
-app.get("/login", function(req, res){
-    res.sendFile(pub+"/login.html");
-});
+// app.get("/login", function(req, res){
+//     res.sendFile(pub+"/login.html");
+// });
 
 app.get("/menu", function(req, res){
     res.sendFile(pub+"/menu.html");

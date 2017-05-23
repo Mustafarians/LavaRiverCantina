@@ -3,17 +3,26 @@ body {
     background-size:cover;
 }
 
-.but1{
-    width: 200px;
-    height: 60px;
-}
-.but2{
-    width: 200px;
-    height: 60px;
+.whiteText{
+    color: white;
 }
 
-#buttons{
-    padding-left: 50vw;
-    padding-top: 50vh;
-    margin: auto;
-}f
+#hoursOperation{
+    text-align: right;
+}
+
+.withMargin{
+    margin-top: 100px;
+}
+
+#loginWindow{
+    align-content: center;
+    top: 35%;
+}
+#uName{
+    padding: 5px;
+}
+
+#passC{
+    padding: 5px;
+}
