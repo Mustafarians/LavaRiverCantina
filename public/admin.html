@@ -1,13 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <title>L.R.C - Admin</title>
+        
+        <link rel="stylesheet" type="text/css" href="/styles/menu.css">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" type="text/css" href="/styles/kitchen.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
 
     <body>
+        <nav class="navbar navbar-inverse" datatype="affix">
+            <div class="container-fluid">
 
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuBarItems">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand">THE LAVA RIVER CANTINA</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="menuBarItems">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/menu">Menu</a></li>
+                        <li><a href="/tracker">Tracker</a></li>
+                        <li class="active"><a href="/admin">Admin</a></li>
+                    </ul>
+
+                    <div class="nav navbar-nav navbar-right">
+                        <li><a href="/">Logout</a></li>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    
+    <div class="col-md-2">
+        <button  type="button" id="openBut" class="btn btn-primary">Open Store</button>
+        <button  type="button" id="closeBut" class="btn btn-primary">Close Store</button>
+    </div>
+        
+    <div class="container">
+        <div class="col-md-5 col-md-offset-1">
+            <button  type="button" id="ordInfo" class="btn btn-primary">Orders</button>
+            
+            <div id="orderdata">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Order Num</th>
+                        <th>Item</th>
+                        <th>Order Name</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="order">
+                    </tbody>
+                </table>
+
+                <button type="button" id="clearBut" class="btn btn-primary">Clear</button>
+            </div>
+        </div>
+        
+        <div class="col-md-5 col-md-offset-1">
+            <button type="button" id="editMenu" class="btn btn-primary">Menu</button>
+            
+            <div id="menudata">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Item Num</th>
+                        <th>Price</th>
+                        <th>Named</th>
+                    </tr>
+                    </thead>
+                    <tbody id="menu">
+                    </tbody>
+                </table>
+                <div id="changebox">
+                    <Select>
+                        <option value=""></option>
+                        <option value="1">Bantha Brisket</option>
+                        <option value="2">Tauntaun Steak</option>
+                        <option value="3">Nerf Burger</option>
+                        <option value="4">Womp Rat Ribs</option>
+                        <option value="5">Lava Flea Legs</option>
+                        <option value="6">Meatlump</option>
+                        <option value="7">Churro</option>
+                        <option value="8">Cracknel</option>
+                        <option value="9">Banzon</option>
+                        <option value="10">Exonium</option>
+                        <option value="11">Drapsha</option>
+                        <option value="12">Food Pearls</option>
+                        <option value="13">Lamito</option>
+                        <option value="14">Mallow</option>
+                        <option value="15">Firkrann Fries</option>
+                        <option value="16">Selkath Salad</option>
+                        <option value="17">Grainmush</option>
+                        <option value="18">Blue Milkshakes</option>
+                        <option value="19">Corellian Ale</option>
+                        <option value="20">Turbofizz</option>
+                        <option value="21">Twin Suns Special</option>
+                    </Select>
+                    <input type="text" id="priceChange" placeholder="Enter New Price"/>
+                    <button type="button" id="subchangeBut" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <button  type="button" id="limitBut" class="btn btn-primary">Limits</button>
+    </div>
+        
         <script src="/script/adminbundle.js"></script>
     </body>
 </html>
