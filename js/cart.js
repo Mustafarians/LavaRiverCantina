@@ -43,6 +43,8 @@ $(document).ready(function(){
                 type:"post",
                 success:function(resp){
                     if(resp.status == "success"){
+                        var oNum = document.createElement("div");
+                        oNum.innerHTML = "Your order number is: " + resp.oName;
                         location.href = "/tracker";   
                     } else if(resp.status == "fail"){
                         console.log("order failed");
