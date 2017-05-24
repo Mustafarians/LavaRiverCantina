@@ -145,6 +145,7 @@ app.post("/cartFill", function(req, resp){
     pg.connect(dbURL, function(err, client, done){
         if(err){
             console.log(err);
+            console.log("1");
             resp.end("FAIL");
         }
         for(i = 0; i < OrderItems.length; i++){
@@ -153,12 +154,14 @@ app.post("/cartFill", function(req, resp){
             done();
             if(err){
                 console.log(err);
+                console.log("2");
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
                 price.push(result.rows[0].price)
             } else {
                 resp.end("FAIL");
+                console.log("3");
             }
              if(index == OrderItems.length -1){
                  var obj = {
@@ -179,7 +182,7 @@ app.post("/cartFill", function(req, resp){
 app.post("/order66", function(req, resp){
     var OrderItems = req.session.items;
     var OrderItemsQuant = req.session.quant;
-    var priceArray = req.session.priceArray;
+    var priceArray = req.body.priceArray;
     
     pg.connect(dbURL, function(err, client, done){
         if(err){
