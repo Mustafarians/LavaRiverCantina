@@ -10342,31 +10342,6 @@ return jQuery;
     var price = [];
     
     var fill1Filler = "";
-    var fill2Filler = "";
-    
-    $.ajax({
-                url:"/cartFill",
-                type:"post",
-                success:function(resp){
-                    if(resp.status == "success"){
-                        var totalestprice = 0;
-                        OrderItems = resp.OrderItems;
-                        OrderItemsQuant = resp.OrderItemsQuant;
-                        price = resp.price;
-                        for(i = 0; i < OrderItems.length; i++){
-                            var totalprice = parseInt(price[i]) * parseInt(OrderItemsQuant[i])
-                            totalestprice = parseFloat(totalprice) + parseFloat(totalestprice);
-                            fill1Filler = fill1Filler + "<tr><td>" + OrderItems[i] + "<td>" + OrderItemsQuant[i] + "<td>$" + totalprice + "<td><tr>"
-                        }
-                        fill1.innerHTML = fill1Filler;
-                        sub.innerHTML = "Sub-Total: $" + totalestprice;
-                        tax.innerHTML = "Imperial Tax: $" + (totalestprice * 0.25);
-                        total.innerHTML = "Total: $" + ((totalestprice * 0.25) + totalestprice);
-                    } else if(resp.status == "fail"){
-                        console.log("order failed");
-                }
-            }
-        })
     
     subBut.addEventListener("click", function(){
          if(OrderItems.length > 0){
@@ -10393,6 +10368,30 @@ return jQuery;
         })
          }
     });
+
+    $.ajax({
+        url:"/cartFill",
+        type:"post",
+        success:function(resp){
+            if(resp.status == "success"){
+                var totalestprice = 0;
+                OrderItems = resp.OrderItems;
+                OrderItemsQuant = resp.OrderItemsQuant;
+                price = resp.price;
+                for(i = 0; i < OrderItems.length; i++){
+                    var totalprice = parseInt(price[i]) * parseInt(OrderItemsQuant[i])
+                    totalestprice = parseFloat(totalprice) + parseFloat(totalestprice);
+                    fill1Filler = fill1Filler + "<tr><td>" + OrderItems[i] + "<td>" + OrderItemsQuant[i] + "<td>$" + totalprice + "<td><tr>"
+                }
+                fill1.innerHTML = fill1Filler;
+                sub.innerHTML = "Sub-Total: $" + totalestprice;
+                tax.innerHTML = "Imperial Tax: $" + (totalestprice * 0.25);
+                total.innerHTML = "Total: $" + ((totalestprice * 0.25) + totalestprice);
+            } else if(resp.status == "fail"){
+                console.log("order failed");
+            }
+        }
+    })
 }); 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

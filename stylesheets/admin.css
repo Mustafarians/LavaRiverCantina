@@ -1,0 +1,9 @@
+body{
+    background: url(../images/lavaBackground2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: static;
+    z-index: -1;
+
+}
