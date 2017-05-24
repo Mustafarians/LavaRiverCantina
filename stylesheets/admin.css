@@ -1,3 +1,6 @@
+.bod{
+    padding: 10px;
+  
 body{
     background: url(../images/lavaBackground2.jpg);
     background-repeat: no-repeat;
@@ -5,5 +8,4 @@ body{
     background-position: center;
     position: static;
     z-index: -1;
-
 }

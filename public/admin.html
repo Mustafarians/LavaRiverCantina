@@ -40,19 +40,20 @@
                     </ul>
 
                     <div class="nav navbar-nav navbar-right">
+                        <li><a href="/cart">Cart</a></li>
                         <li><a href="/">Logout</a></li>
                     </div>
                 </div>
             </div>
         </nav>
     
-    <div class="col-md-2">
-        <button  type="button" id="openBut" class="btn btn-primary">Open Store</button>
-        <button  type="button" id="closeBut" class="btn btn-primary">Close Store</button>
+    <div class="col-md-12">
+        <button  type="button" id="openBut" class="btn btn-success btn-lg btn-block">Open Store</button>
+        <button  type="button" id="closeBut" class="btn btn-danger btn-lg btn-block">Close Store</button>
     </div>
         
     <div class="container">
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-5 col-md-offset-1 bod">
             <button  type="button" id="ordInfo" class="btn btn-primary">Orders</button>
             
             <div id="orderdata">
@@ -74,14 +75,14 @@
             </div>
         </div>
         
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-5 col-md-offset-1 bod">
             <button type="button" id="editMenu" class="btn btn-primary">Menu</button>
             
             <div id="menudata">
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Item Num</th>
+                        <th>Item Name</th>
                         <th>Price</th>
                         <th>Named</th>
                     </tr>
@@ -98,7 +99,7 @@
         </div>
     </div>
     
-    <div class="col-md-3">
+    <div class="col-md-12">
         <button  type="button" id="limitBut" class="btn btn-primary">Limits</button>
 
         <div id="limitbox">
