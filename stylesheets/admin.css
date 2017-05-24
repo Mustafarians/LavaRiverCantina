@@ -1,11 +1,15 @@
-.bod{
+.bod {
     padding: 10px;
-  
-body{
-    background: url(../images/lavaBackground2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: static;
-    z-index: -1;
+}
+
+#menudata{
+    visibility: hidden;
+}
+
+#orderdata{
+    visibility: hidden;
+}
+
+#limitbox{
+    visibility: hidden;
 }
