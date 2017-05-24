@@ -3,7 +3,7 @@
     <head>
         <title>L.R.C - Admin</title>
         
-        <link rel="stylesheet" type="text/css" href="/styles/menu.css">
+        <link rel="stylesheet" type="text/css" href="/styles/admin.css">
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -90,31 +90,8 @@
                     </tbody>
                 </table>
                 <div id="changebox">
-                    <Select>
-                        <option value=""></option>
-                        <option value="1">Bantha Brisket</option>
-                        <option value="2">Tauntaun Steak</option>
-                        <option value="3">Nerf Burger</option>
-                        <option value="4">Womp Rat Ribs</option>
-                        <option value="5">Lava Flea Legs</option>
-                        <option value="6">Meatlump</option>
-                        <option value="7">Churro</option>
-                        <option value="8">Cracknel</option>
-                        <option value="9">Banzon</option>
-                        <option value="10">Exonium</option>
-                        <option value="11">Drapsha</option>
-                        <option value="12">Food Pearls</option>
-                        <option value="13">Lamito</option>
-                        <option value="14">Mallow</option>
-                        <option value="15">Firkrann Fries</option>
-                        <option value="16">Selkath Salad</option>
-                        <option value="17">Grainmush</option>
-                        <option value="18">Blue Milkshakes</option>
-                        <option value="19">Corellian Ale</option>
-                        <option value="20">Turbofizz</option>
-                        <option value="21">Twin Suns Special</option>
-                    </Select>
-                    <input type="text" id="priceChange" placeholder="Enter New Price"/>
+                    <input type="text" id="itemname" placeholder="Enter Item Name" />
+                    <input type="text" id="priceChange" placeholder="Enter Price"/>
                     <button type="button" id="subchangeBut" class="btn btn-primary">Submit</button>
                 </div>
             </div>
@@ -123,6 +100,11 @@
     
     <div class="col-md-3">
         <button  type="button" id="limitBut" class="btn btn-primary">Limits</button>
+
+        <div id="limitbox">
+            Order Quantity: <input type="text" id="ordqtychange" placeholder="Enter Order Quantity"/>
+            <button type="button" id="limitchangeBut" class="btn btn-primary">Submit</button>
+        </div>
     </div>
         
         <script src="/script/adminbundle.js"></script>
