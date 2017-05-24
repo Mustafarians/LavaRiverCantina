@@ -38,9 +38,17 @@ $(document).ready(function(){
     
     subBut.addEventListener("click", function(){
          if(OrderItems.length > 0){
+             var priceArray = [];
+             for(i = 0; i < OrderItems.length; i++){
+                 var totalprice = parseInt(price[i]) * parseInt(OrderItemsQuant[i])
+                 priceArray.push(totalprice);
+             }
             $.ajax({
                 url:"/order66",
                 type:"post",
+                data:{
+                    priceArray:priceArray
+                },
                 success:function(resp){
                     if(resp.status == "success"){
                         var oNum = document.createElement("div");
