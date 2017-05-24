@@ -14,7 +14,7 @@ var server = require("http").createServer(app);
 var pub = path.resolve(__dirname, "public");
 var io = require("socket.io")(server);
 const pg = require("pg");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:webdev@localhost:5432/lrc";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:x@localhost:5432/lrc";
 
 var orderName = 0;
 
@@ -183,6 +183,7 @@ app.post("/cartFill", function(req, resp){
 app.post("/order66", function(req, resp){
     var OrderItems = req.session.items;
     var OrderItemsQuant = req.session.quant;
+    var priceArray = req.session.priceArray;
     
     pg.connect(dbURL, function(err, client, done){
         if(err){
@@ -198,7 +199,7 @@ app.post("/order66", function(req, resp){
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
-                    client.query("INSERT INTO orders (itemnum, quantity, ordername, status) VALUES ($1, $2, $3, $4)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing"], function(err, result){
+                    client.query("INSERT INTO orders (itemnum, quantity, ordername, status, totalprice) VALUES ($1, $2, $3, $4, $5)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing", priceArray[index]], function(err, result){
                     done();
                     if(err){
                         console.log(err);
