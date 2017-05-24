@@ -14,7 +14,7 @@ var server = require("http").createServer(app);
 var pub = path.resolve(__dirname, "public");
 var io = require("socket.io")(server);
 const pg = require("pg");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:webdev@localhost:5432/lrc";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:x@localhost:5432/lrc";
 
 var orderName = 0;
 
