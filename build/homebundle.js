@@ -10333,7 +10333,6 @@ return jQuery;
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
     
-    var loginBut = document.getElementById("2login");
     var menuBut = document.getElementById("2menu");
 
     // loginBut.addEventListener("click", function(){
@@ -10370,6 +10369,8 @@ return jQuery;
         })
     });
 });
+
+
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
