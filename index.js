@@ -75,9 +75,6 @@ app.get("/kitchen", function(req,res){
 //    }
 })
 
-// app.get("/login", function(req, res){
-//     res.sendFile(pub+"/login.html");
-// });
 
 app.get("/menu", function(req, res){
     res.sendFile(pub+"/menu.html");
@@ -101,7 +98,6 @@ io.on("connection", function(socket){
 app.post("/login", function(req, resp){
     var passC = req.body.passC;
     var uName = req.body.uName;
-    
     pg.connect(dbURL, function(err, client, done){
         if(err){
             console.log(err);
@@ -129,7 +125,7 @@ app.post("/login", function(req, resp){
         })
         })
     
-})
+});
 
 app.post("/storing", function(req, resp){
     req.session.items = req.body.OrderItems;
