@@ -386,6 +386,26 @@ app.post("/closeStore", function(req, res){
     }
     res.send({status:"success"});
 });
+
+//Signal for cooked orders
+app.post("/cooked", function(req, res){
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            res.end("FAIL");
+        }
+        client.query("UPDATE orders SET status = 'Complete' WHERE ordername = $1", [req.body.ordNumber], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                res.send({status:"fail"});
+            }
+            
+            res.send({status:"success"});
+        })
+    });
+});
+
 //listen to the server and open up a port
 server.listen(port, function(err){
     if(err){
