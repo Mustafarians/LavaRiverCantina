@@ -8,13 +8,24 @@ $(document).ready(function(){
             type:"post",
             success:function(resp){
                 orderplace.innerHTML = "Order #: " +resp.orderNumber;
-                document.getElementById("statusPart").innerHTML = "Ready For Pickup";
+                console.log(resp.ordstate);
+                document.getElementById("statusPart").innerHTML = resp.ordstate;
+                if(resp.ordState == "Picked Up"){
+                    document.getElementById("item1").disabled = true;
+                } else {
+                    document.getElementById("item1").disabled = false;   
+                }
             }
         });
     }, 5000);
     
         document.getElementById("item1").addEventListener("click", function(){
-            document.getElementById("statusPart").innerHTML = "Picked Up";
-            alert("You have picked up your order.");
+            $.ajax({
+            url:"/puOrder",
+            type:"post",
+            success:function(resp){
+                document.getElementById("statusPart").innerHTML = resp.ordstate;
+            }
+        });
         });
 });
