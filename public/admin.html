@@ -22,7 +22,6 @@
     <body>
         <nav class="navbar navbar-inverse" datatype="affix">
             <div class="container-fluid">
-
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuBarItems">
                         <span class="icon-bar"></span>
@@ -52,13 +51,13 @@
         <button  type="button" id="closeBut" class="btn btn-danger btn-lg btn-block">Close Store</button>
     </div>
         
-    <div class="container">
+    <div class="container-fluid">
         <div class="col-md-4 bod">
             <div id="orderData">
                 <button  type="button" id="ordInfo" class="btn btn-primary">Orders</button>
 
                 <div id="orderbox">
-                    <table class="table table-hover">
+                    <table class="table table-hover scrolling">
                         <thead>
                         <tr>
                             <th>Order Num</th>
@@ -89,7 +88,7 @@
                 <button type="button" id="menInfo" class="btn btn-primary">Menu</button>
 
                 <div id="menubox">
-                    <table class="table table-hover">
+                    <table class="table table-hover scrolling">
                         <thead>
                         <tr>
                             <th>Item Num</th>
@@ -117,18 +116,16 @@
         <div class="col-md-4 bod">
             <div id="limitData">
                 <button  type="button" id="limInfo" class="btn btn-primary">Limits</button>
-
                 <div id="limitbox">
                     Order Quantity: <input type="text" id="ordqtychange" placeholder="Enter New Quantity"/>
                     <button type="button" id="limsub" class="btn btn-primary">Submit</button>
                 </div>
-
-                <button  type="button" id="profit" class="btn btn-primary">Profit</button>
             </div>
 
-            <div id="profitData">
-                <div id="profitbox">
-                    <table class="table table-hover">
+            <div id="profitData" class="topbod">
+                <button  type="button" id="profit" class="btn btn-primary">Profit</button>
+                <div id="profitbox" class="row">
+                    <table class="table table-hover scrolling">
                         <thead>
                         <tr>
                             <th>Profit</th>
@@ -159,6 +156,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 

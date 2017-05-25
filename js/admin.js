@@ -14,19 +14,19 @@ var ordBut = document.getElementById("ordInfo"),
     profBut = document.getElementById("profit");
 
 ordshow.addEventListener("click", function(){
-    document.getElementById("orderbox").style.display = "inline-block";
+    document.getElementById("orderbox").style.visibility = "visible";
 });
 
 menshow.addEventListener("click", function(){
-    document.getElementById("menubox").style.display = "inline-block";
+    document.getElementById("menubox").style.visibility = "visible";
 });
 
 limshow.addEventListener("click", function(){
-    document.getElementById("limitbox").style.display = "inline-block";
+    document.getElementById("limitbox").style.visibility = "visible";
 });
 
 proshow.addEventListener("click", function(){
-    document.getElementById("profitbox").style.display = "inline-block";
+    document.getElementById("profitbox").style.visibility = "visible";
 });
 
 $(document).ready(function() {
