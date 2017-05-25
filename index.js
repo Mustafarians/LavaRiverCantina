@@ -44,10 +44,6 @@ app.get("/", function(req, res){
         res.sendFile(pub+"/home.html");
 });
 
-app.get("/adminn", function(req, res){
-    res.sendFile(pub+"/admin.html");
-});
-
 app.get("/authoritylevel", function(req, res){
     if(req.session.level == 1){
         res.sendFile(pub+"/kitchen.html");
@@ -75,10 +71,6 @@ app.get("/kitchen", function(req,res){
         res.sendFile(pub+"/home.html");
     }
 })
-
-app.get("/loginn", function(req, res){
-    res.sendFile(pub+"/login.html");
-});
 
 app.get("/menu", function(req, res){
     res.sendFile(pub + "/menu.html");
