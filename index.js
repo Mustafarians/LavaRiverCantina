@@ -14,7 +14,11 @@ var server = require("http").createServer(app);
 var pub = path.resolve(__dirname, "public");
 var io = require("socket.io")(server);
 const pg = require("pg");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:starwars7@localhost:5432/test1";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:x@localhost:5432/test1";
+
+const client = new pg.Client(dbURL);
+client.connect();
+
 var orderName = 0;
 var ordNumber = "Waiting";
 var ordState = "Picked Up";
@@ -94,32 +98,27 @@ io.on("connection", function(socket){
 app.post("/login", function(req, resp){
     var passC = req.body.passC;
     var uName = req.body.uName;
-    pg.connect(dbURL, function(err, client, done){
+    
+    client.query("SELECT * FROM staff WHERE passcode = $1 AND empid = $2", [passC, uName], function(err, result){
+        
         if(err){
             console.log(err);
             resp.end("FAIL");
         }
-            client.query("SELECT * FROM staff WHERE passcode = $1 AND empid = $2", [passC, uName], function(err, result){
-            done();
-            if(err){
-                console.log(err);
-                resp.end("FAIL");
+        if(result.rows.length > 0){
+            req.session.level = result.rows[0].level;
+                
+            var obj = {
+                status:"success",
+                level:result.rows[0].level
             }
-            if(result.rows.length > 0){
-                req.session.level = result.rows[0].level;
                 
-                var obj = {
-                    status:"success",
-                    level:result.rows[0].level
-                }
-                
-                resp.send(obj);
+            resp.send(obj);
             } else {
                 console.log("err1");
                 resp.end("FAIL");
             }
-        })
-        })
+    });
     
 });
 
@@ -145,59 +144,48 @@ app.post("/cartFill", function(req, resp){
     var OrderItemsQuant = req.session.quant;
     var price = [];
     
-    pg.connect(dbURL, function(err, client, done){
-        if(err){
-            console.log(err);
-            console.log("1");
-            resp.end("FAIL");
-        }
-        if(OrderItems) {
-            for (i = 0; i < OrderItems.length; i++) {
+    
+    if(OrderItems) {
+        for (i = 0; i < OrderItems.length; i++) {
 
-                (function (index) {
-                    client.query("SELECT * FROM menu WHERE foodname = $1", [OrderItems[index]], function (err, result) {
-                        done();
-                        if (err) {
-                            console.log(err);
-                            console.log("2");
-                            resp.end("FAIL");
+            (function (index) {
+                client.query("SELECT * FROM menu WHERE foodname = $1", [OrderItems[index]], function (err, result) {
+                    
+                    if (err) {
+                        console.log(err);
+                        console.log("2");
+                        resp.end("FAIL");
+                    }
+                    if (result.rows.length > 0) {
+                        price.push(result.rows[0].price)
+                    } else {
+                        resp.end("FAIL");
+                        console.log("3");
+                    }
+                    if (index == OrderItems.length - 1) {
+                        var obj = {
+                            status: "success",
+                            OrderItems: OrderItems,
+                            price: price,
+                            OrderItemsQuant: OrderItemsQuant
                         }
-                        if (result.rows.length > 0) {
-                            price.push(result.rows[0].price)
-                        } else {
-                            resp.end("FAIL");
-                            console.log("3");
-                        }
-                        if (index == OrderItems.length - 1) {
-                            var obj = {
-                                status: "success",
-                                OrderItems: OrderItems,
-                                price: price,
-                                OrderItemsQuant: OrderItemsQuant
-                            }
-                            resp.send(obj);
-                        }
-                    })
-                })(i)
-            }
+                        resp.send(obj);
+                    }
+                })
+            })(i)
         }
-    })
-})
+    }
+});
+
 
 app.post("/order66", function(req, resp){
     var OrderItems = req.session.items;
     var OrderItemsQuant = req.session.quant;
     var priceArray = req.body.priceArray;
-    
-    pg.connect(dbURL, function(err, client, done){
-        if(err){
-            console.log(err);
-            resp.end("FAIL");
-        }
         
-        for(i = 0; i < OrderItems.length; i++){
-         (function(index) {client.query("SELECT * FROM menu WHERE foodname = $1", [OrderItems[index]], function(err, result){
-            done();
+    for(i = 0; i < OrderItems.length; i++){
+        (function(index) {client.query("SELECT * FROM menu WHERE foodname = $1", [OrderItems[index]], function(err, result){
+            
             if(err){
                 console.log(err);
                 resp.end("FAIL");
@@ -205,14 +193,14 @@ app.post("/order66", function(req, resp){
             if(result.rows.length > 0){
                 client.query("SELECT")
                     client.query("INSERT INTO orders (itemnum, quantity, ordername, status) VALUES ($1, $2, $3, $4)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing"], function(err, result){
-                        done();
+                        
                         if(err){
                             console.log(err);
                             resp.end("FAIL");
                         }
                     });
                     client.query("INSERT INTO profit(amount) VALUES ($1)", [priceArray[index]], function(err, result) {
-                        done();
+                        
                         if (err) {
                             console.log(err);
                             resp.end("FAIL");
@@ -224,24 +212,19 @@ app.post("/order66", function(req, resp){
             }     
         })   
     }) (i);
-        }
-        orderName++;
-        var obj = {
-                status:"success",
-                oName:orderName
-                }
-            resp.send(obj);
-        })
-})
+    }
+    orderName++;
+    var obj = {
+            status:"success",
+            oName:orderName
+            }
+        resp.send(obj);
+});
 
 app.post("/ordchek", function(req, res){
-    pg.connect(dbURL, function(err, client, done){
-        if(err){
-            console.log(err);
-            res.end("FAIL");
-        }
+    
         client.query("SELECT * FROM orders WHERE status = 'Processing' ORDER BY ordername ASC", [], function(err, result){
-            done();
+            
             if(err){
                 console.log(err);
                 res.send({status:"fail"});
@@ -249,17 +232,11 @@ app.post("/ordchek", function(req, res){
             
             res.send(result.rows);
             });
-        });
 });
 
 app.post("/order", function(req, res){
-    pg.connect(dbURL, function(err, client, done){
-        if(err){
-            console.log(err);
-            res.end("FAIL");
-        }
+    
         client.query("SELECT * FROM orders ORDER BY status", [], function(err, result){
-            done();
             if(err){
                 console.log(err);
                 res.send({status:"fail"});
@@ -267,41 +244,28 @@ app.post("/order", function(req, res){
 
             res.send(result.rows);
         });
-    });
 });
 
 app.post("/clrOrder", function(req, res) {
-    pg.connect(dbURL, function (err, client, done) {
+    
+    client.query("DELETE from orders *", function (err) {
         if (err) {
             console.log(err);
-            res.end("FAIL");
+            res.send({status: "fail"});
         }
-        client.query("DELETE from orders *", function (err) {
-            done();
-            if (err) {
-                console.log(err);
-                res.send({status: "fail"});
-            }
-            res.send({status: "success"});
-        });
+        res.send({status: "success"});
     });
 });
 
 app.post("/menu", function(req, res){
-    pg.connect(dbURL, function(err, client, done){
+    
+    client.query("SELECT * FROM menu", [], function(err, result){
         if(err){
             console.log(err);
-            res.end("FAIL");
+            res.send({status:"fail"});
         }
-        client.query("SELECT * FROM menu", [], function(err, result){
-            done();
-            if(err){
-                console.log(err);
-                res.send({status:"fail"});
-            }
 
-            res.send(result.rows);
-        });
+        res.send(result.rows);
     });
 });
 
@@ -309,42 +273,29 @@ app.post("/menuChange", function(req, res){
     var itemName = req.body.itemName;
     var itemPrice = req.body.itemPrice;
 
-    pg.connect(dbURL, function(err, client, done){
+    client.query("UPDATE menu SET price = $2 WHERE foodname = $1", [itemName, itemPrice], function(err){
         if(err){
             console.log(err);
-            res.end("FAIL");
-        }
-        client.query("UPDATE menu SET price = $2 WHERE foodname = $1", [itemName, itemPrice], function(err){
-            done();
-            if(err){
-                console.log(err);
-                res.send({
-                    status:"fail",
-                    msg:"There was an Error, please try again"
-                });
-            }
             res.send({
-                status:"success",
-                msg:"Price has been Updated"
-            })
-        });
+                status:"fail",
+                msg:"There was an Error, please try again"
+            });
+        }
+        res.send({
+            status:"success",
+            msg:"Price has been Updated"
+        })
     });
 });
 
 app.post("/profit", function(req, res){
-    pg.connect(dbURL, function(err, client, done){
+ 
+    client.query("SELECT * FROM profit", [], function(err, result){
         if(err){
             console.log(err);
-            res.end("FAIL");
+            res.send({status:"fail"});
         }
-        client.query("SELECT * FROM profit", [], function(err, result){
-            done();
-            if(err){
-                console.log(err);
-                res.send({status:"fail"});
-            }
-            res.send(result.rows);
-        });
+        res.send(result.rows);
     });
 });
 
@@ -384,13 +335,8 @@ app.post("/closeStore", function(req, res){
 
 //Signal for cooked orders
 app.post("/cooked", function(req, res){
-    pg.connect(dbURL, function(err, client, done){
-        if(err){
-            console.log(err);
-            res.end("FAIL");
-        }
+    
         client.query("UPDATE orders SET status = 'Complete' WHERE ordername = $1", [req.body.ordNumber], function(err, result){
-            done();
             if(err){
                 console.log(err);
                 res.send({status:"fail"});
@@ -400,7 +346,6 @@ app.post("/cooked", function(req, res){
             res.send({status:"success"});
             ordNumber = req.body.ordNumber;
         })
-    });
 });
 
 app.post("/getOrder", function(req, res){
