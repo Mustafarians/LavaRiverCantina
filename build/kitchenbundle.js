@@ -10425,8 +10425,7 @@ return jQuery;
                                 break;
                         case 6: cookTime = parseInt(cookTime) + 5000
                                 break;
-                        default: cookTime = parseInt(cookTime) * 5000
-                                break;
+                        default: break;
                     }
                 console.log(cooking);
             }
@@ -10445,8 +10444,6 @@ return jQuery;
                 }
             });
     };
-    
-    //Button functions
     
     it1.addEventListener("click", function(req, resp){
         it2.disabled = true;
