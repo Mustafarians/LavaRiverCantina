@@ -62,5 +62,9 @@ $(document).ready(function(){
     });
     
     //Cooking Function
+    function cook(Order){
+        
+    }
+    
     
 });

@@ -14,7 +14,7 @@ var server = require("http").createServer(app);
 var pub = path.resolve(__dirname, "public");
 var io = require("socket.io")(server);
 const pg = require("pg");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:x@localhost:5432/lrc";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:starwars7@localhost:5432/test1";
 var orderName = 0;
 
 //redirect /scripts to build folder
