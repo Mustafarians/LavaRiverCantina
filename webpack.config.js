@@ -7,6 +7,7 @@ var bF = path.resolve(__dirname, "build");
 var config = {
     entry:{
         "home":jF+"/home.js",
+        "admin":jF+"/admin.js",
         "cart":jF+"/cart.js",
         "menu":jF+"/menu.js",
         "kitchen":jF+"/kitchen.js"

@@ -3,7 +3,7 @@
 }
 
 #menudata{
-    visibility: hidden;
+    display: none;
 }
 
 #orderdata{
@@ -11,5 +11,5 @@
 }
 
 #limitbox{
-    visibility: hidden;
+    display: none;
 }
