@@ -54,58 +54,114 @@
         
     <div class="container">
         <div class="col-md-4 bod">
-            <button  type="button" id="ordInfo" class="btn btn-primary">Orders</button>
-            
-            <div id="orderbox">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Order Num</th>
-                        <th>Item</th>
-                        <th>Order Name</th>
-                        <th>Quantity</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody id="order">
-                    </tbody>
-                </table>
+            <div id="orderData">
+                <button  type="button" id="ordInfo" class="btn btn-primary">Orders</button>
 
-                <button type="button" id="clrBut" class="btn btn-primary">Clear</button>
+                <div id="orderbox">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Order Num</th>
+                            <th>Item Num</th>
+                            <th>Order Name</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody id="orderbod">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <button type="button" id="clr" class="btn btn-primary">Clear</button>
+                </div>
             </div>
         </div>
         
         <div class="col-md-4 bod">
-            <button type="button" id="menInfo" class="btn btn-primary">Menu</button>
-            
-            <div id="menubox">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Item Name</th>
-                        <th>Price</th>
-                        <th>Named</th>
-                    </tr>
-                    </thead>
-                    <tbody id="menu">
-                    </tbody>
-                </table>
-                <div id="changebox">
-                    <input type="text" id="itemname" placeholder="Enter Item Name" />
-                    <input type="text" id="priceChange" placeholder="Enter Price"/>
-                    <button type="button" id="mensubBut" class="btn btn-primary">Submit</button>
+            <div id="menuData">
+                <button type="button" id="menInfo" class="btn btn-primary">Menu</button>
+
+                <div id="menubox">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Item Num</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody id="menubod">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div id="changebox">
+                        <input type="text" id="itemName" placeholder="Enter Item Name" />
+                        <input type="text" id="priceChange" placeholder="Enter Price"/>
+                        <button type="button" id="mensub" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 bod">
-            <button  type="button" id="limInfo" class="btn btn-primary">Limits</button>
 
-            <div id="limitbox">
-                Order Quantity: <input type="text" id="ordqtychange" placeholder="Enter Order Quantity"/>
-                <button type="button" id="limsubBut" class="btn btn-primary">Submit</button>
+        <div class="col-md-4 bod">
+            <div id="limitData">
+                <button  type="button" id="limInfo" class="btn btn-primary">Limits</button>
+
+                <div id="limitbox">
+                    Order Quantity: <input type="text" id="ordqtychange" placeholder="Enter New Quantity"/>
+                    <button type="button" id="limsub" class="btn btn-primary">Submit</button>
+                </div>
+
+                <button  type="button" id="profit" class="btn btn-primary">Profit</button>
+            </div>
+
+            <div id="profitData">
+                <div id="profitbox">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Profit</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                        </thead>
+                        <tbody id="profitbod">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                        <thead>
+                        <tr>
+                            <th>Todays Profit</th>
+                        </tr>
+                        </thead>
+                        <tbody id="profitTot">
+                        <tr>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div id="proTotal">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
         
         <script src="/scripts/adminbundle.js"></script>
     </body>
