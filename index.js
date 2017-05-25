@@ -14,7 +14,7 @@ var server = require("http").createServer(app);
 var pub = path.resolve(__dirname, "public");
 var io = require("socket.io")(server);
 const pg = require("pg");
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:x@localhost:5432/lrc";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:starwars7@localhost:5432/test1";
 var orderName = 0;
 
 //redirect /scripts to build folder
@@ -386,6 +386,26 @@ app.post("/closeStore", function(req, res){
     }
     res.send({status:"success"});
 });
+
+//Signal for cooked orders
+app.post("/cooked", function(req, res){
+    pg.connect(dbURL, function(err, client, done){
+        if(err){
+            console.log(err);
+            res.end("FAIL");
+        }
+        client.query("UPDATE orders SET status = 'Complete' WHERE ordername = $1", [req.body.ordNumber], function(err, result){
+            done();
+            if(err){
+                console.log(err);
+                res.send({status:"fail"});
+            }
+            
+            res.send({status:"success"});
+        })
+    });
+});
+
 //listen to the server and open up a port
 server.listen(port, function(err){
     if(err){
