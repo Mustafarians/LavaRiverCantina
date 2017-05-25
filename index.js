@@ -184,7 +184,7 @@ app.post("/order66", function(req, resp){
         
         for(i = 0; i < OrderItems.length; i++){
          (function(index) {client.query("SELECT * FROM menu WHERE foodname = $1", [OrderItems[index]], function(err, result){
-            done();
+            
             if(err){
                 console.log(err);
                 resp.end("FAIL");
@@ -192,14 +192,14 @@ app.post("/order66", function(req, resp){
             if(result.rows.length > 0){
                 client.query("SELECT")
                     client.query("INSERT INTO orders (itemnum, quantity, ordername, status) VALUES ($1, $2, $3, $4)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing"], function(err, result){
-                        done();
+                        
                         if(err){
                             console.log(err);
                             resp.end("FAIL");
                         }
                     });
                     client.query("INSERT INTO profit(amount) VALUES ($1)", [priceArray[index]], function(err, result) {
-                        done();
+                        
                         if (err) {
                             console.log(err);
                             resp.end("FAIL");
@@ -223,7 +223,7 @@ app.post("/order66", function(req, resp){
 app.post("/ordchek", function(req, res){
    
         client.query("SELECT * FROM orders WHERE status = 'Processing' ORDER BY ordername ASC", [], function(err, result){
-            done();
+            
             if(err){
                 console.log(err);
                 res.send({status:"fail"});
@@ -236,7 +236,7 @@ app.post("/ordchek", function(req, res){
 app.post("/order", function(req, res){
     
         client.query("SELECT * FROM orders ORDER BY status", [], function(err, result){
-            done();
+            
             if(err){
                 console.log(err);
                 res.send({status:"fail"});
@@ -249,7 +249,7 @@ app.post("/order", function(req, res){
 app.post("/clrOrder", function(req, res) {
    
         client.query("DELETE from orders *", function (err) {
-            done();
+            
             if (err) {
                 console.log(err);
                 res.send({status: "fail"});
@@ -261,7 +261,7 @@ app.post("/clrOrder", function(req, res) {
 app.post("/menu", function(req, res){
     
         client.query("SELECT * FROM menu", [], function(err, result){
-            done();
+            
             if(err){
                 console.log(err);
                 res.send({status:"fail"});
@@ -276,7 +276,7 @@ app.post("/menuChange", function(req, res){
     var itemPrice = req.body.itemPrice;
 
         client.query("UPDATE menu SET price = $2 WHERE foodname = $1", [itemName, itemPrice], function(err){
-            done();
+            
             if(err){
                 console.log(err);
                 res.send({
@@ -294,7 +294,7 @@ app.post("/menuChange", function(req, res){
 app.post("/profit", function(req, res){
     
         client.query("SELECT * FROM profit", [], function(err, result){
-            done();
+            
             if(err){
                 console.log(err);
                 res.send({status:"fail"});
@@ -341,7 +341,7 @@ app.post("/closeStore", function(req, res){
 app.post("/cooked", function(req, res){
     
         client.query("UPDATE orders SET status = 'Complete' WHERE ordername = $1", [req.body.ordNumber], function(err, result){
-            done();
+            
             if(err){
                 console.log(err);
                 res.send({status:"fail"});
