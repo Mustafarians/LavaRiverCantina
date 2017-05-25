@@ -16,6 +16,7 @@ var io = require("socket.io")(server);
 const pg = require("pg");
 var dbURL = process.env.DATABASE_URL || "postgres://postgres:starwars7@localhost:5432/test1";
 var orderName = 0;
+var ordNumber = "Waiting";
 
 //redirect /scripts to build folder
 app.use("/scripts", express.static("build"));
@@ -209,6 +210,7 @@ app.post("/order66", function(req, resp){
                 resp.end("FAIL");
             }
             if(result.rows.length > 0){
+                client.query("SELECT")
                     client.query("INSERT INTO orders (itemnum, quantity, ordername, status) VALUES ($1, $2, $3, $4)", [result.rows[0].itemnum, OrderItemsQuant[index], orderName, "Processing"], function(err, result){
                         done();
                         if(err){
@@ -402,8 +404,13 @@ app.post("/cooked", function(req, res){
             }
             
             res.send({status:"success"});
+            ordNumber = req.body.ordNumber;
         })
     });
+});
+
+app.post("/getOrder", function(req, res){
+    res.send({orderNumber:ordNumber});
 });
 
 //listen to the server and open up a port

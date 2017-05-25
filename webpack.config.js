@@ -10,7 +10,8 @@ var config = {
         "admin":jF+"/admin.js",
         "cart":jF+"/cart.js",
         "menu":jF+"/menu.js",
-        "kitchen":jF+"/kitchen.js"
+        "kitchen":jF+"/kitchen.js",
+        "tracker":jF+"/tracker.js"
     },
     output: {
         filename:"[name]bundle.js",
