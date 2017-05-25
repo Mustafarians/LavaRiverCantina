@@ -63,11 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10327,10 +10328,8 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */
+
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
@@ -10367,32 +10366,60 @@ return jQuery;
     var sum = 0;
     
     var QuantChek = /^[1-6]$/;
-    
-    function Chek(mate, oItem) {
-        if(QuantChek.test(document.getElementById(mate).value) == true){
-            var Num = 0;
-            if(OrderItems.indexOf(FoodItems[oItem]) > -1){
-                item = OrderItems.indexOf(FoodItems[oItem]);
-                Num = OrderItemsQuant[item];
-            }
-            sum = parseInt(document.getElementById(mate).value);
-            for(i = 0; i < OrderItemsQuant.length; i++){
-                sum = sum + parseInt(OrderItemsQuant[i]);
-            }
-            sum = sum - Num;
-            console.log(sum);
-            if(sum < 11){
-                if(OrderItems.indexOf(FoodItems[oItem]) > -1){
-                    OrderItemsQuant[item] = document.getElementById(mate).value;
-                } else {
-                    OrderItems.push(FoodItems[oItem]);
-                    OrderItemsQuant.push(document.getElementById(mate).value)
-                }
-            }
-            console.log(OrderItems);
-            console.log(OrderItemsQuant);
+
+    var ordlim = "";
+
+    var storestatus = "";
+
+    $.ajax({
+        url:"/g/limit",
+        type:"post",
+        success:function(res){
+            ordlim = res.ordLimit;
         }
-        sum = 0;
+    });
+
+    $.ajax({
+        url:"/g/stStatus",
+        type:"post",
+        success:function(res){
+            storestatus = String(res.storeStatus);
+        }
+    });
+
+    function Chek(mate, oItem) {
+        if(storestatus == "true") {
+            if (QuantChek.test(document.getElementById(mate).value) == true) {
+                var Num = 0;
+                if (OrderItems.indexOf(FoodItems[oItem]) > -1) {
+                    item = OrderItems.indexOf(FoodItems[oItem]);
+                    Num = OrderItemsQuant[item];
+                }
+                sum = parseInt(document.getElementById(mate).value);
+                for (i = 0; i < OrderItemsQuant.length; i++) {
+                    sum = sum + parseInt(OrderItemsQuant[i]);
+                }
+                sum = sum - Num;
+                console.log(sum);
+                if (sum < ordlim) {
+                    if (OrderItems.indexOf(FoodItems[oItem]) > -1) {
+                        OrderItemsQuant[item] = document.getElementById(mate).value;
+                    } else {
+                        OrderItems.push(FoodItems[oItem]);
+                        OrderItemsQuant.push(document.getElementById(mate).value)
+                    }
+                } else {
+                    alert("Sorry - Your order has too many items. Maximum order size: " + (ordlim - 1));
+                }
+                console.log(OrderItems);
+                console.log(OrderItemsQuant);
+            } else {
+                alert("Sorry - You've ordered too many of one item. Maximum quantity: 6");
+            }
+            sum = 0;
+        } else {
+            alert("Sorry; The store is currently closed for the day. Please try again later.");
+        }
     }
 
     item1But.addEventListener("click", function(){
@@ -10491,9 +10518,11 @@ return jQuery;
                 success:function(resp){
                     if(resp.status == "success"){
                         location.href = "/cart";   
-                    } else if(resp.status == "fail"){
+                    } else if(resp.status == "fail") {
                         console.log("order failed");
-                }
+                    } else if(resp.status == "closed"){
+                        alert("Sorry; The store is currently closed for the day. Please try again later.")
+                    }
             }
         })
          }
@@ -10502,4 +10531,5 @@ return jQuery;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
-/******/ ]);
+
+/******/ });

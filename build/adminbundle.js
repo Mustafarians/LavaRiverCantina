@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10327,77 +10327,192 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function(){
-    console.log("ready");
-    
-    //Cook Buttons
-    var it1 = document.getElementById("item1");
-    var it2 = document.getElementById("item2");
-    var it3 = document.getElementById("item3");
-    var it4 = document.getElementById("item4");
-    var it5 = document.getElementById("item5");
-    var it6 = document.getElementById("item6");
-    
-    var orders = {};
+/* WEBPACK VAR INJECTION */(function($) {//buttons shown on page
+var opBut = document.getElementById("openBut"),
+    cloBut = document.getElementById("closeBut"),
+    ordshow = document.getElementById("ordInfo"),
+    menshow = document.getElementById("menInfo"),
+    limshow = document.getElementById("limInfo"),
+    proshow = document.getElementById("profit");
 
-    
-    //Query database for info to fill tables
-    $.ajax({
-        url:"/ordchek",
-        type:"post",
-        success:function(resp){
-                        
-            //Loop through the items in the response
-            for(var i = 0; i < resp.length; i++){
-                
-                var ordTitle = resp[i].ordername;
-                
-                if(!(ordTitle in orders)){
-                    orders[ordTitle] = [[resp[i].itemnum, resp[i].quantity]];
-                } else {
-                    orders[ordTitle].push([resp[i].itemnum, resp[i].quantity]);
-                }
-                
+var ordBut = document.getElementById("ordInfo"),
+    menBut = document.getElementById("menInfo"),
+    limBut = document.getElementById("limsub"),
+    clearBut = document.getElementById("clr"),
+    mensubBut = document.getElementById("mensub"),
+    profBut = document.getElementById("profit");
+
+ordshow.addEventListener("click", function(){
+    document.getElementById("orderbox").style.display = "inline-block";
+});
+
+menshow.addEventListener("click", function(){
+    document.getElementById("menubox").style.display = "inline-block";
+});
+
+limshow.addEventListener("click", function(){
+    document.getElementById("limitbox").style.display = "inline-block";
+});
+
+proshow.addEventListener("click", function(){
+    document.getElementById("profitbox").style.display = "inline-block";
+});
+
+$(document).ready(function() {
+    opBut.addEventListener("click", function(){
+        $.ajax({
+            url:"/openStore",
+            type:"post",
+            data: {
+                storestatus:"YES"
+            },
+            success:function(res){
+                alert("Store is OPEN")
             }
-            
-            //Fill in table names
-            var z = 1;
-            for(var y = 0; y < Object.keys(orders).length; y++){
-                if(z < 7){
-                    var Title = "title" + String(z);
-                    document.getElementById(Title).innerHTML = "Order #" + String(Object.keys(orders)[y]);
-                    z = z + 1;
-                }
-            }
-            
-            //Fill in food numbers and quantities
-            z = 1;
-            for(var y = 0; y < Object.keys(orders).length; y++){
-                var Food = "food" + String(z);
-                for(var x = 0; x < Object.values(orders)[y].length; x++){
-                    var itmNum = String(Object.values(orders)[y][x][0]);
-                    var itmQnt = String(Object.values(orders)[y][x][1]);
-                
-                    if(!(document.getElementById(Food) == "")){
-                        document.getElementById(Food).innerHTML = document.getElementById(Food).innerHTML + "<br>Item #: " + itmNum + "   Quantity: " + itmQnt;
-                    } else {
-                        document.getElementById(Food).innerHTML = "Item #: " + itmNum + " Quantity: " + itmQnt;
-                    }
-                }
-                z = z + 1;
-            }
-        }
-      
+        });
     });
-    
-    //Cooking Function
-    
+
+    cloBut.addEventListener("click", function(){
+        $.ajax({
+            url:"/closeStore",
+            type:"post",
+            data: {
+                storestatus:"NO"
+            },
+            success:function(res){
+                alert("Store is CLOSED")
+            }
+        });
+    });
+
+    ordBut.addEventListener("click", function() {
+
+        var orderBody = document.getElementById("orderbod");
+        var fill = "";
+
+        $.ajax({
+            url: "/order",
+            type: "post",
+            success:function(res){
+                for (var i = 0; i < res.length; i++) {
+
+                    var orderNum = res[i].ordernum;
+                    var itemNum = res[i].itemnum;
+                    var orderName = res[i].ordername;
+                    var qty = res[i].quantity;
+                    var stat = res[i].status;
+
+                    fill = fill + "<tr><td>" + orderNum + "<td>" + itemNum + "<td>" + orderName + "<td>" + qty + "<td>" + stat + "<td><tr>";
+                }
+                orderBody.innerHTML = fill;
+            }
+        });
+    });
+
+    clearBut.addEventListener("click", function(){
+        $.ajax({
+            url:"/clrOrder",
+            type:"post",
+            success:function(){
+                alert("Order database cleared");
+                location.reload();
+            }
+        });
+    });
+
+
+    menBut.addEventListener("click", function() {
+
+        var menuBody = document.getElementById("menubod");
+        var fill = "";
+
+        $.ajax({
+            url: "/menu",
+            type: "post",
+            success:function(res){
+                for (var i = 0; i < res.length; i++) {
+
+                    var itemNum = res[i].itemnum;
+                    var itemNam = res[i].foodname;
+                    var itemPrice = res[i].price;
+
+                    fill = fill + "<tr><td>" + itemNum + "<td>" + itemNam + "<td>" + itemPrice + "<td><tr>";
+                }
+                menuBody.innerHTML = fill;
+            }
+        });
+    });
+
+    mensubBut.addEventListener("click", function(){
+        var name = document.getElementById("itemName").value,
+            price = document.getElementById("priceChange").value;
+
+        $.ajax({
+            url: "/menuChange",
+            type: "post",
+            data:{
+                itemName:name,
+                itemPrice:price
+            },
+            success:function(res){
+                if(res.status == "success"){
+                    alert(res.msg);
+                }else if(res.status == "fail"){
+                    alert(res.msg);
+                }
+                location.reload();
+            }
+        });
+    });
+
+    limBut.addEventListener("click", function(){
+
+        var newLim = document.getElementById("ordqtychange").value;
+
+        $.ajax({
+
+            url:"/qtChange",
+            type:"post",
+            data: {
+                limitvar : newLim
+            },
+            success:function(res){
+                alert("Order limits changed!");
+                location.reload();
+            }
+        })
+    });
+
+    profBut.addEventListener("click", function(){
+        var profbod = document.getElementById("profitbod");
+        var proftot = document.getElementById("profitTot");
+
+        var fill = "";
+        var fill2 = "";
+        var profTotal = 0;
+
+        $.ajax({
+            url: "/profit",
+            type: "post",
+            success:function(res){
+                for (var i = 0; i < res.length; i++) {
+
+                    var proAmt = res[i].amount;
+                    var proDate = res[i].date;
+                    var proTime = res[i].time;
+
+                    profTotal = profTotal + parseInt(proAmt);
+
+                    fill = fill + "<tr><td>" + proAmt + "<td>" + proDate.substr(0,10) + "<td>" + proTime.substr(0,8) + "<td><tr>";
+                }
+                profbod.innerHTML = fill;
+                proftot.innerHTML = "$ " + profTotal
+            }
+        });
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
