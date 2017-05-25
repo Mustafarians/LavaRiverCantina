@@ -1,19 +1,35 @@
 .bod {
     padding: 10px;
 }
+.topbod{
+    padding-top: 10px;
+}
 
 #orderbox{
-    display: none;
+    visibility: hidden;
 }
 
 #menubox{
-    display: none;
+    visibility: hidden;
 }
 
 #limitbox{
-    display: none;
+    visibility: hidden;
 }
 
 #profitbox{
-    display: none;
+    visibility: hidden;
+}
+
+.scrolling{
+    background-color: lightcyan;
+    border: 1px solid black;
+    max-height: 75vh;
+    max-width: 30vw;
+    overflow: auto;
+    float: left;
+}
+.profButPosition{
+    top: 300px;
+    position: absolute;
 }

@@ -40,6 +40,10 @@ app.use(session({
     saveUninitialized: true
 }));
 
+app.get("/adminn", function(req, res){
+    res.sendFile(pub+"/admin.html")
+});
+
 app.get("/", function(req, res){
         res.sendFile(pub+"/home.html");
 });
