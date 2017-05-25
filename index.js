@@ -228,7 +228,7 @@ app.post("/ordchek", function(req, res){
             console.log(err);
             res.end("FAIL");
         }
-        client.query("SELECT * FROM orders WHERE status = $1 ORDER BY ordername ASC", ["Processing"], function(err, result){
+        client.query("SELECT * FROM orders WHERE status = 'Processing' ORDER BY ordername ASC", [], function(err, result){
             done();
             if(err){
                 console.log(err);
