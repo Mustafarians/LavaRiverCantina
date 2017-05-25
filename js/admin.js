@@ -1,30 +1,59 @@
-$(document).ready(function () {
+var opBut = document.getElementById("openBut"),
+    cloBut = document.getElementById("closeBut"),
+    ordshow = document.getElementById("ordInfo"),
+    menshow = document.getElementById("menInfo"),
+    limshow = document.getElementById("limInfo");
 
-    var opBut = document.getElementById("openBut"),
-        cloBut = document.getElementById("closeBut"),
-        orderBut = document.getElementById("ordInfo"),
-        menuBut = document.getElementById("editMenu"),
-        limBut = document.getElementById("limitBut");
+var ordBut = document.getElementById("ordInfo"),
+    menBut = document.getElementById("menInfo"),
+    limBut = document.getElementById("limInfo"),
 
-    var limitDiv = document.getElementById("limitbox"),
-        orderDiv = document.getElementById("orderdata"),
-        menuDiv = document.getElementById("menudata");
+ordshow.addEventListener("click", function(){
+    document.getElementById("orderbox").style.display = "inline-block";
+});
 
-    opBut.addEventListener("click", function () {
+menshow.addEventListener("click", function(){
+    document.getElementById("menubox").style.display = "inline-block";
+});
+
+limshow.addEventListener("click", function(){
+    document.getElementById("limitbox").style.display = "inline-block";
+});
+
+$(document).ready(function() {
+    ordBut.addEventListener("click", function(){
+        var clearBut = document.getElementById("clrBut");
+
+        $.ajax({
+            url:"",
+            type:"",
+            data:{},
+            success:function (resp){
+            }
+        });
     });
 
-    cloBut.addEventListener("click", function () {
+    menBut.addEventListener("click", function(){
+        var menusubBut = document.getElementById("mensubBut");
+
+        $.ajax({
+            url:"",
+            type:"",
+            data:{},
+            success:function(resp){
+            }
+        });
     });
 
-    orderBut.addEventListener("click", function () {
-        orderDiv.style.display = "inline-block"
-    });
+    limBut.addEventListener("click", function(){
+        var lumsubBut = document.getElementById("limsubBut");
 
-    menuBut.addEventListener("click", function () {
-        menuDiv.style.visibility = "visible"
-    });
-
-    limBut.addEventListener("click", function () {
-        limitDiv.visibility("visible");
+        $.ajax({
+            url:"",
+            type:"",
+            data:{},
+            success:function(resp){
+            }
+        });
     });
 })

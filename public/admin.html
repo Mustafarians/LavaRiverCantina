@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html>
     <head>
         <title>L.R.C - Admin</title>
@@ -17,8 +17,8 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </head>
 
+    </head>
     <body>
         <nav class="navbar navbar-inverse" datatype="affix">
             <div class="container-fluid">
@@ -56,7 +56,7 @@
         <div class="col-md-4 bod">
             <button  type="button" id="ordInfo" class="btn btn-primary">Orders</button>
             
-            <div id="orderdata">
+            <div id="orderbox">
                 <table class="table table-hover">
                     <thead>
                     <tr>
@@ -71,14 +71,14 @@
                     </tbody>
                 </table>
 
-                <button type="button" id="clearBut" class="btn btn-primary">Clear</button>
+                <button type="button" id="clrBut" class="btn btn-primary">Clear</button>
             </div>
         </div>
         
         <div class="col-md-4 bod">
-            <button type="button" id="editMenu" class="btn btn-primary">Menu</button>
+            <button type="button" id="menInfo" class="btn btn-primary">Menu</button>
             
-            <div id="menudata">
+            <div id="menubox">
                 <table class="table table-hover">
                     <thead>
                     <tr>
@@ -93,16 +93,16 @@
                 <div id="changebox">
                     <input type="text" id="itemname" placeholder="Enter Item Name" />
                     <input type="text" id="priceChange" placeholder="Enter Price"/>
-                    <button type="button" id="subchangeBut" class="btn btn-primary">Submit</button>
+                    <button type="button" id="mensubBut" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
         <div class="col-md-4 bod">
-            <button  type="button" id="limitBut" class="btn btn-primary">Limits</button>
+            <button  type="button" id="limInfo" class="btn btn-primary">Limits</button>
 
             <div id="limitbox">
                 Order Quantity: <input type="text" id="ordqtychange" placeholder="Enter Order Quantity"/>
-                <button type="button" id="limitchangeBut" class="btn btn-primary">Submit</button>
+                <button type="button" id="limsubBut" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>

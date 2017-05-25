@@ -2,12 +2,12 @@
     padding: 10px;
 }
 
-#menudata{
+#orderbox{
     display: none;
 }
 
-#orderdata{
-    visibility: hidden;
+#menubox{
+    display: none;
 }
 
 #limitbox{
