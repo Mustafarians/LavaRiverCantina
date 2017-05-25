@@ -17,6 +17,7 @@ const pg = require("pg");
 var dbURL = process.env.DATABASE_URL || "postgres://postgres:starwars7@localhost:5432/test1";
 var orderName = 0;
 var ordNumber = "Waiting";
+var ordState = "Picked Up";
 
 //redirect /scripts to build folder
 app.use("/scripts", express.static("build"));
@@ -66,13 +67,13 @@ app.get("/admin", function(req, res){
 });
 
 app.get("/kitchen", function(req,res){
-//    if(req.session.level == 1){
+    if(req.session.level == 1){
         res.sendFile(pub+"/kitchen.html");
-//    } else if (req.session.level == 2){
-//        res.sendFile(pub+"/kitchen.html");
-//    } else {
-//        res.sendFile(pub+"/home.html");
-//    }
+    } else if (req.session.level == 2){
+        res.sendFile(pub+"/kitchen.html");
+    } else {
+        res.sendFile(pub+"/home.html");
+    }
 })
 
 app.get("/loginn", function(req, res){
@@ -403,6 +404,7 @@ app.post("/cooked", function(req, res){
                 res.send({status:"fail"});
             }
             
+            ordState = 'Complete';
             res.send({status:"success"});
             ordNumber = req.body.ordNumber;
         })
@@ -410,8 +412,12 @@ app.post("/cooked", function(req, res){
 });
 
 app.post("/getOrder", function(req, res){
-    res.send({orderNumber:ordNumber});
+    res.send({orderNumber:ordNumber, ordstate:ordState});
 });
+
+app.post("/puOrder", function(req, res){
+    ordState = "Picked Up";
+})
 
 //listen to the server and open up a port
 server.listen(port, function(err){
