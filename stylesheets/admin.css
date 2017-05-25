@@ -2,14 +2,18 @@
     padding: 10px;
 }
 
-#menudata{
-    visibility: hidden;
+#orderbox{
+    display: none;
 }
 
-#orderdata{
-    visibility: hidden;
+#menubox{
+    display: none;
 }
 
 #limitbox{
-    visibility: hidden;
+    display: none;
+}
+
+#profitbox{
+    display: none;
 }
