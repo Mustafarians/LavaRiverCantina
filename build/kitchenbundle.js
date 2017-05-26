@@ -10352,7 +10352,6 @@ return jQuery;
     it6.disabled = false;
     
     var orders = {};
-
     
     //Query database for info to fill tables
     $.ajax({
@@ -10425,29 +10424,29 @@ return jQuery;
                                 break;
                         case 6: cookTime = parseInt(cookTime) + 5000
                                 break;
-                        default: cookTime = parseInt(cookTime) * 5000
-                                break;
+                        default: break;
                     }
                 console.log(cooking);
             }
         
+        //Wait for the proper cooking time to send the ajax call
+        setTimeout(function() {
             $.ajax({
                 url:"/cooked",
                 type:"post",
                 data: {
-                    ordNumber:Order
+                    ordNumber:ordNumb
                 },
                 success:function(resp){
-                    setTimeout(function() {
                         alert("Order #" + String(Order) + " is ready!");
                         location.reload();
-                    }, cookTime);
                 }
             });
+        }, cookTime);
+
     };
     
-    //Button functions
-    
+    //Click functions for each of the buttons
     it1.addEventListener("click", function(req, resp){
         it2.disabled = true;
         it3.disabled = true;
