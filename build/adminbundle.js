@@ -10330,7 +10330,7 @@ return jQuery;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {//buttons shown on page
+/* WEBPACK VAR INJECTION */(function($) {//Buttons for showing divs
 var opBut = document.getElementById("openBut"),
     cloBut = document.getElementById("closeBut"),
     ordshow = document.getElementById("ordInfo"),
@@ -10338,6 +10338,7 @@ var opBut = document.getElementById("openBut"),
     limshow = document.getElementById("limInfo"),
     proshow = document.getElementById("profit");
 
+//Buttons for executing commands
 var ordBut = document.getElementById("ordInfo"),
     menBut = document.getElementById("menInfo"),
     limBut = document.getElementById("limsub"),
@@ -10345,6 +10346,7 @@ var ordBut = document.getElementById("ordInfo"),
     mensubBut = document.getElementById("mensub"),
     profBut = document.getElementById("profit");
 
+//Functions for on click to show divs
 ordshow.addEventListener("click", function(){
     document.getElementById("orderbox").style.visibility = "visible";
 });
@@ -10361,7 +10363,9 @@ proshow.addEventListener("click", function(){
     document.getElementById("profitbox").style.visibility = "visible";
 });
 
+//Functions for filling in tables
 $(document).ready(function() {
+    //Opens Store for business
     opBut.addEventListener("click", function(){
         $.ajax({
             url:"/openStore",
@@ -10375,6 +10379,7 @@ $(document).ready(function() {
         });
     });
 
+    //Closes Store for business
     cloBut.addEventListener("click", function(){
         $.ajax({
             url:"/closeStore",
@@ -10388,6 +10393,7 @@ $(document).ready(function() {
         });
     });
 
+    //Fills orders table with daily orders
     ordBut.addEventListener("click", function() {
 
         var orderBody = document.getElementById("orderbod");
@@ -10412,6 +10418,7 @@ $(document).ready(function() {
         });
     });
 
+    //Clears the Orders table in the database
     clearBut.addEventListener("click", function(){
         $.ajax({
             url:"/clrOrder",
@@ -10423,7 +10430,7 @@ $(document).ready(function() {
         });
     });
 
-
+    //Loads all menu items into table
     menBut.addEventListener("click", function() {
 
         var menuBody = document.getElementById("menubod");
@@ -10446,6 +10453,7 @@ $(document).ready(function() {
         });
     });
 
+    //Changes the price in the database
     mensubBut.addEventListener("click", function(){
         var name = document.getElementById("itemName").value,
             price = document.getElementById("priceChange").value;
@@ -10468,6 +10476,7 @@ $(document).ready(function() {
         });
     });
 
+    //Allows client order limits
     limBut.addEventListener("click", function(){
 
         var newLim = document.getElementById("ordqtychange").value;
@@ -10486,12 +10495,12 @@ $(document).ready(function() {
         })
     });
 
+    //Items from orders are listed in table and total profit is calculated
     profBut.addEventListener("click", function(){
         var profbod = document.getElementById("profitbod");
         var proftot = document.getElementById("profitTot");
 
         var fill = "";
-        var fill2 = "";
         var profTotal = 0;
 
         $.ajax({
