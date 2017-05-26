@@ -10338,6 +10338,7 @@ return jQuery;
     var tax = document.getElementById("tax");
     var total = document.getElementById("total");
     var subBut = document.getElementById("submitBut");
+    var orderNum = document.getElementById("orderNum");
     var OrderItems = [];
     var OrderItemsQuant = [];
     var price = [];
@@ -10388,6 +10389,7 @@ return jQuery;
                 sub.innerHTML = "Sub-Total: $" + totalestprice;
                 tax.innerHTML = "Imperial Tax: $" + (totalestprice * 0.25);
                 total.innerHTML = "Total: $" + ((totalestprice * 0.25) + totalestprice);
+                orderNum.innerHTML = "Your Order Number is: " + (resp.orderNum + 1);
             } else if(resp.status == "fail"){
                 console.log("order failed");
             }
